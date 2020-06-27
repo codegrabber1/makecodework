@@ -12,4 +12,12 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/', 'IndexController@index')->name('home');
+Route::get('/', 'IndexController@index')->name('index');
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+Route::namespace('Admin')->prefix('admin')->name('admin.')->middleware('can:manage-users')->group(function(){
+	Route::resource('/admin/users','UserController', ['except' => ['show', 'store', 'create']]);
+});
+

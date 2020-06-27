@@ -27,5 +27,9 @@
             <div class="name">Android</div>
         </div>
     </div>
-here is a main content, which contains blocks with all categories and last posts from blog
+    <section>
+        
+        here is a main content, which contains blocks with all categories and last posts from blog
+    </section>
+    
 @stop
