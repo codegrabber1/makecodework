@@ -17,7 +17,38 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::namespace('Admin')->prefix('admin')->name('admin.')->middleware('can:manage-users')->group(function(){
-	Route::resource('/admin/users','UserController', ['except' => ['show', 'store', 'create']]);
+/*
+ * Admin panel
+ * */
+$group=[
+  'namespace'   =>'Admin',
+  'prefix'      =>'admin',
+//  'middleware'  => ['auth']
+  'middleware'  => ['auth','can:manage-users']
+];
+
+Route::group($group, function(){
+  $methods = ['index','create','edit','store','update', 'destroy'];
+
+  Route::resource('/users','UserController' )
+    ->only($methods)
+    ->names('admin.users');
+
+  Route::resource('/categories', 'Blog\CategoryController')
+    ->only($methods)
+    ->names('admin.categories');
+
+  Route::resource('/posts', 'Blog\PostController')
+	  ->only($methods)
+	  ->names('admin.posts');
+
+  Route::resource('/theme/tutorials', 'Tutorials\ThemeController')
+	->only($methods)
+	->names('admin.theme.tutorials');
+
+  Route::resource('/tutorials', 'Tutorials\CategoryController')
+	->only($methods)
+	->names('admin.tutorials');
+  
 });
 
