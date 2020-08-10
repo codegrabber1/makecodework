@@ -2,19 +2,21 @@
 
 namespace App\Http\Controllers\Admin\Blog;
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\Admin\BaseController;
 use App\Models\BlogPosts;
 use App\Repositories\CategoryRepository;
 use App\Repositories\PostRepository;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
-class PostController extends Controller
+class PostController extends BaseController
 {
 
-	protected $blogPostRepository;
+	private $blogPostRepository;
 	private $blogCategoryRepository;
 
 	public function __construct() {
+		parent::__construct();
 		$this->blogPostRepository = app(PostRepository::class);
 		$this->blogCategoryRepository = app(CategoryRepository::class);
 	}
@@ -26,7 +28,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = $this->blogPostRepository->getAllPosts(true);
+        $posts = $this->blogPostRepository->getAllPosts(6,1,0);
         $categories = $this->blogCategoryRepository->getAllItems();
     	return view('admin.blog.posts', compact('posts', 'categories'));
     }
@@ -51,7 +53,29 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+
+
+	    if(empty($data['slug'])) {
+		    $data['slug'] = Str::of($data['bc_title'])->slug("-");
+	    }
+
+	    if(isset($data['bc_image'])){
+
+		    $data['bc_image'] = $request->file('bc_image')->getClientOriginalName();
+		    $path = env('THEME').'/images/blog';
+		    $request->bc_image->move($path, $data['bc_image']);
+	    }
+
+	    $data['bc_excerpt'] = Str::limit($data['bc_text'], 200, ' ...');
+
+	    $item = (new BlogPosts())->create($data);
+
+	    return $item ? redirect()
+		    ->route('admin.posts.index', [$item->id])
+		    ->with(['success' => 'Item has ben created successfully']) : back()
+		    ->withErrors(['msg' => 'Not stored'])
+		    ->withInput();
     }
 
     /**
@@ -73,7 +97,9 @@ class PostController extends Controller
      */
     public function edit($id)
     {
-        //
+	    $posts=$this->blogPostRepository->getEdit($id);
+    	$categories = $this->blogCategoryRepository->getAllItems();
+	    return view('admin.blog.post-edit', compact('posts','categories'));
     }
 
     /**
@@ -85,7 +111,26 @@ class PostController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $item = $this->blogPostRepository->getEdit($id);
+        
+    	$data = $request->all();
+
+	    if(isset($data['bc_image'])){
+
+		    $data['bc_image'] = $request->file('bc_image')->getClientOriginalName();
+		    $path = env('THEME').'/images/blog';
+		    $request->bc_image->move($path, $data['bc_image']);
+	    }
+	    
+	    $data['bc_excerpt'] = Str::limit($data['bc_text'], 200, ' ...');
+
+	    $result = $item->update($data);
+
+	    return $result ? redirect()
+		    ->route('admin.posts.index', $item->id)
+		    ->with(['success' => 'Updated successfully']) : back()
+		    ->withErrors(['msg' => 'Not updated'])
+		    ->withInput();
     }
 
     /**
@@ -96,6 +141,19 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
-        //
+	    $item = $this->blogPostRepository->getEdit($id);
+
+	    if(isset($item->bc_image)) {
+		    $path = env('THEME').'/images/blog/';
+		    unlink(public_path($path.$item->bc_image));
+	    }
+
+	    $result = BlogPosts::destroy($id);
+
+	    return $result ? redirect()
+		    ->route('admin.posts.index')
+		    ->with(['success' => "Item with id-[$id] deleted successfully"]) : back()
+		    ->withErrors(['msg' => 'Not deleted']);
+    
     }
 }

@@ -2,25 +2,30 @@
 
 namespace App\Http\Controllers\Admin\Tutorials;
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\Admin\BaseController;
+use App\Models\Themes;
+use App\Repositories\ThemeRepository;
 use Illuminate\Http\Request;
-
-use App\Models\Themes as Model;
 use Illuminate\Support\Str;
 
-class ThemeController extends Controller
+class ThemeController extends BaseController
 {
-    /**
+    private $themeRepository;
+
+    public function __construct() {
+    	parent::__construct();
+    	$this->themeRepository = app(ThemeRepository::class);
+    }
+
+	/**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-
-	    $themes = (new Model())::all();
-	    
-    	return view('admin.tutorials.theme', compact('themes'));
+        $themes = $this->themeRepository->getAllThemes(0, 1);
+        return view('admin.tutorials.theme', compact('themes'));
     }
 
     /**
@@ -30,9 +35,10 @@ class ThemeController extends Controller
      */
     public function create()
     {
-		$themes = new Model();
-		
-    	return view('admin.tutorials.theme-edit', compact('themes'));
+        $item = new Themes();
+        $themes = $this->themeRepository->getForSelect();
+        return view('admin.tutorials.theme-edit', compact('item', 'themes'));
+
     }
 
     /**
@@ -43,17 +49,27 @@ class ThemeController extends Controller
      */
     public function store(Request $request)
     {
-	    $data = $request->input();
+
+
+    	$data = $request->all();
+
 
 	    if(empty($data['slug'])) {
-		    $data['slug'] = Str::of($data['theme_name'])->slug('-');
+		    $data['slug'] = Str::of($data['theme_name'])->slug("-");
 	    }
 
-	    $result = (new Model())->create($data);
+	    if(isset($data['theme_image'])){
 
-	    return $result ? redirect()
-		    ->route('admin.theme.tutorials.index', [$result->id])
-		    ->with(['success' => 'Item has been created successfully']) : back()
+		    $data['theme_image'] = $request->file('theme_image')->getClientOriginalName();
+		    $path = env('THEME').'/images/themes';
+		    $request->theme_image->move($path, $data['theme_image']);
+	    }
+	    
+	    $item = (new Themes())->create($data);
+
+	    return $item ? redirect()
+		    ->route('admin.tutorials.theme.index', [$item->id])
+		    ->with(['success' => 'Item has ben created successfully']) : back()
 		    ->withErrors(['msg' => 'Not stored'])
 		    ->withInput();
     }
@@ -77,9 +93,9 @@ class ThemeController extends Controller
      */
     public function edit($id)
     {
-
-    	$themes = (new Model())->find($id);
-    	return view('admin.tutorials.theme-edit', compact('themes'));
+        $item = $this->themeRepository->getEdit($id);
+        
+	    return view('admin.tutorials.theme-edit', compact('item'));
     }
 
     /**
@@ -91,14 +107,22 @@ class ThemeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $item = (new Model())->find($id);
+	    $item = $this->themeRepository->getEdit($id);
+
 	    $data = $request->all();
+
+	    if(isset($data['theme_image'])){
+
+		    $data['theme_image'] = $request->file('theme_image')->getClientOriginalName();
+		    $path = env('THEME').'/images/themes';
+		    $request->theme_image->move($path, $data['theme_image']);
+	    }
 
 	    $result = $item->update($data);
 
 	    return $result ? redirect()
-		    ->route('admin.theme.tutorials.index', $item->id)
-		    ->with(['success' => 'Updated successfully']) : back()
+		    ->route('admin.tutorials.theme.index', $item->id)
+		    ->with(['success' => 'Theme '. $item->theme_name . ' Updated successfully']) : back()
 		    ->withErrors(['msg' => 'Not updated'])
 		    ->withInput();
     }
@@ -111,6 +135,20 @@ class ThemeController extends Controller
      */
     public function destroy($id)
     {
-        //
+	    $item = $this->themeRepository->getEdit($id);
+
+	    if(isset($item->theme_image)) {
+		    $path = env('THEME').'/images/themes/';
+		    unlink(public_path($path.$item->theme_image));
+	    }
+
+	    $result = Themes::destroy($id);
+
+	    return $result ? redirect()
+		    ->route('admin.tutorials.theme.index')
+		    ->with(['success' => "Item with id-[$id] deleted successfully"]) : back()
+		    ->withErrors(['msg' => 'Not deleted']);
+
     }
+    
 }

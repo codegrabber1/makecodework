@@ -9,7 +9,7 @@
                     <ul class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{ route('home') }}"><i class="zmdi zmdi-home"></i> {{ config('app.name', 'Makecodework') }}</a></li>
                         <li class="breadcrumb-item"><a href="{{ route('admin.posts.index') }}">Posts</a></li>
-                        {{-- <li class="breadcrumb-item active">New Post</li> --}}
+                        
                     </ul>
                     <button class="btn btn-primary btn-icon mobile_menu" type="button"><i class="zmdi zmdi-sort-amount-desc"></i></button>
                 </div>
@@ -21,18 +21,26 @@
         </div>
         <div class="container">
             <div class="row">
+                <div class="col-12">
+                    @include('admin.includes.message')
+                </div>
                 @foreach($posts as $post)
                 <div class="col-lg-6 col-md-12">
                     <div class="card">
                         <div class="body">
                             <div class="blogitem mb-5">
                                 <div class="blogitem-image">
-                                    <input type="file" name="image" id="dropify-event" data-default-file="{{ asset(env('THEME')).'/images/blog/'. $post->bc_image }}">
+                                    <a href="{{ route('admin.posts.edit', $post->id) }}">
+                                        <img src="{{ asset(env('THEME')).'/images/blog/'. $post->bc_image }}" alt="{{ $post->bc_title }}">
+                                    </a>
+                                    
+                                    <span class="blogitem-date"> {{ \Carbon\Carbon::parse($post->created_at)->locale('uk')  }} </span>
+                                    {{--{{ \Carbon\Carbon::parse($post->created_at )->locale('uk')->isoFormat('dddd, d MMM Y, H:m:s') }}--}}
                                 </div>
                                 <div class="blogitem-content">
                                     <div class="blogitem-header">
                                         <div class="blogitem-meta">
-                                            <span><i class="zmdi zmdi-account"></i>By <a href="javascript:void(0);">Michael</a></span>
+                                            <span><i class="zmdi zmdi-account"></i>By <a href="javascript:void(0);">{{ Auth::user()->name }}</a></span>
                                             <span><i class="zmdi zmdi-comments"></i><a href="blog-details.html">Comments(3)</a></span>
                                         </div>
                                         <div class="blogitem-share">
@@ -44,13 +52,18 @@
                                             </ul>
                                         </div>
                                     </div>
-                                    <h5><a href="">{{ $post->bc_title }}</a></h5>
-                                    <p>{{ $post->bc_exerpt }}</p>
-                                    <a href="blog-details.html" class="btn btn-info">Read More</a>
-                                    {{--<h5><a href="blog-details.html">The Most Advance Business Plan</a></h5>--}}
-                                    {{--<p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem--}}
-                                        {{--of letters, as opposed to using 'Content here, content here', making it look like readable English.</p>--}}
-                                    {{--<a href="blog-details.html" class="btn btn-info">Read More</a>--}}
+                                    <h5><a href="{{ route('admin.posts.edit', $post->id) }}">{{ $post->bc_title }}</a>
+                                      <span style="float:right">
+                                        @if($post->is_published)
+                                              <p class="text-success">Published</p>
+                                          @else
+                                              <p class="text-danger">Unpublished</p>
+                                          @endif
+                                      </span>
+                                    </h5>
+
+                                    <p>{!! $post->bc_excerpt  !!} </p>
+                                    <a href="{{ route('admin.posts.edit', $post->id) }}" class="btn btn-info">Read More</a>
                                 </div>
                             </div>
 
@@ -58,6 +71,17 @@
                     </div>
                 </div>
                 @endforeach
+                @if($posts->total() > $posts->count())
+                    <div class="card">
+                        <div class="body">
+                            <ul class="pagination pagination-primary m-b-0">
+                                <li class="page-item">
+                                    {{ $posts->links() }}
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                @endif
             </div>
         </div>
     </div>

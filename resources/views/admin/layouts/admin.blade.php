@@ -15,9 +15,9 @@
     <link rel="stylesheet" href="{{ asset('admin/assets/plugins/bootstrap/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('admin/assets/plugins/bootstrap-select/css/bootstrap-select.css') }}" />
     <link rel="stylesheet" href="{{ asset('admin/assets/plugins/jvectormap/jquery-jvectormap-2.0.3.min.css') }}" />
-    <link rel="stylesheet" href="{{ asset('admin/assets/plugins/summernote/dist/summernote.css') }}"/>
 
-
+    <!-- Select2 -->
+    <link rel="stylesheet" href="{{ asset('admin/assets/plugins/select2/select2.css') }}" />
 
     <link rel="stylesheet" href="{{ asset('admin/assets/plugins/dropify/css/dropify.min.css') }}">
     <link rel="stylesheet" href="{{ asset('admin/assets/css/style.min.css') }}">
@@ -64,6 +64,16 @@
                 </div>
             </li>
             <li class="active open"><a href="{{ route('home') }}"><i class="zmdi zmdi-home"></i><span>Dashboard</span></a></li>
+            <li><a href="javascript:void(0);" class="menu-toggle"><i class="zmdi zmdi-blogger"></i><span>App</span></a>
+                <ul class="ml-menu">
+                    {{-- blog-post.html --}}
+                    <li><a href="{{ route('admin.tutorials.theme.index') }}">Email</a></li>
+                    <li><a href="{{ route('admin.tutorials.category.index') }}">Categories</a></li>
+                    <li><a href="{{ route('admin.tutorials.post.index') }}">Tutorial Posts</a></li>
+                    <li><a href="blog-grid.html">Grid View</a></li>
+                    <li><a href="blog-details.html">Blog Details</a></li>
+                </ul>
+            </li>
             @can("manage-users")
             <li><a href="javascript:void(0);" class="menu-toggle"><i class="zmdi zmdi-apps"></i><span>Users</span></a>
 
@@ -77,9 +87,9 @@
             <li><a href="javascript:void(0);" class="menu-toggle"><i class="zmdi zmdi-blogger"></i><span>Tutorials</span></a>
                 <ul class="ml-menu">
                     {{-- blog-post.html --}}
-                    <li><a href="{{ route('admin.theme.tutorials.index') }}">Theme</a></li>
-                    <li><a href="{{ route('admin.tutorials.index') }}">Categories</a></li>
-                    <li><a href="blog-post.html">Blog Post</a></li>
+                    <li><a href="{{ route('admin.tutorials.theme.index') }}">Theme</a></li>
+                    <li><a href="{{ route('admin.tutorials.category.index') }}">Categories</a></li>
+                    <li><a href="{{ route('admin.tutorials.post.index') }}">Tutorial Posts</a></li>
                     <li><a href="blog-grid.html">Grid View</a></li>
                     <li><a href="blog-details.html">Blog Details</a></li>
                 </ul>
@@ -130,18 +140,21 @@
     @yield('content')
 </section>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ckeditor5/21.0.0/ckeditor.js"></script>
+<script src="https://ckeditor.com/apps/ckfinder/3.5.0/ckfinder.js"></script>
 <script src="{{ asset('admin/assets/bundles/libscripts.bundle.js') }}"></script> <!-- Lib Scripts Plugin Js ( jquery.v3.2.1, Bootstrap4 js) -->
-<script src="{{ asset('admin/assets/bundles/vendorscripts.bundle.js') }}/"></script> <!-- slimscroll, waves Scripts Plugin Js -->
-
+<script src="{{ asset('admin/assets/bundles/vendorscripts.bundle.js') }}"></script> <!-- slimscroll, waves Scripts Plugin Js -->
 
 <script src="{{ asset('admin/assets/plugins/dropify/js/dropify.min.js') }}"></script>
 <script src="{{ asset('admin/assets/js/pages/forms/dropify.js') }}"></script>
-<script src="{{ asset('admin/assets/plugins/summernote/dist/summernote.js') }}"></script>
+
+<script src="{{ asset('admin/assets/plugins/select2/select2.min.js')  }}"></script> <!-- Select2 Js -->
+
 <script src="{{ asset('admin/assets/plugins/dropzone/dropzone.js') }}"></script>
 
+<script src="{{ asset('admin/assets/js/pages/forms/advanced-form-elements.js') }}"></script>
 
 <script src="{{ asset('admin/assets/bundles/mainscripts.bundle.js') }}"></script>
 <script src="{{ asset('admin/assets/js/pages/index.js') }}"></script>
-
 </body>
 </html>

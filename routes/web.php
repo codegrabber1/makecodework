@@ -42,13 +42,18 @@ Route::group($group, function(){
 	  ->only($methods)
 	  ->names('admin.posts');
 
-  Route::resource('/theme/tutorials', 'Tutorials\ThemeController')
-	->only($methods)
-	->names('admin.theme.tutorials');
+  Route::resource('/tutorials/theme', 'Tutorials\ThemeController')
+	  ->only($methods)
+	  ->names('admin.tutorials.theme');
 
-  Route::resource('/tutorials', 'Tutorials\CategoryController')
-	->only($methods)
-	->names('admin.tutorials');
-  
+  Route::resource('/tutorials/category', 'Tutorials\CategoryController')
+	 ->only($methods)
+	 ->names('admin.tutorials.category');
+
+  Route::resource('/tutorials/post', 'Tutorials\ThemePostController')
+	 ->only($methods)
+	 ->names('admin.tutorials.post');
+
+
 });
 

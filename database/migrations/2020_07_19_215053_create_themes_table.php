@@ -16,6 +16,7 @@ class CreateThemesTable extends Migration
         Schema::create('themes', function (Blueprint $table) {
             $table->id();
             $table->string('theme_name', 60);
+            $table->string('theme_image', 60);
 	        $table->boolean('is_published')->default(false);
 	        $table->timestamp('published_at')->nullable();
 

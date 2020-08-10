@@ -4,17 +4,21 @@ namespace App\Http\Controllers\Admin\Tutorials;
 
 use App\Http\Controllers\Controller;
 use App\Models\ThemeCategories;
+use App\Repositories\ThemeRepository;
 use App\Repositories\TutorialCategoryRepository;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class CategoryController extends Controller
 {
 
 	private $tutorialsCategoryRepository;
+	private $tutorialsThemeRepository;
 
 
 	public function __construct() {
 		$this->tutorialsCategoryRepository = app(TutorialCategoryRepository::class);
+		$this->tutorialsThemeRepository = app(ThemeRepository::class);
 	}
 
 	/**
@@ -25,7 +29,8 @@ class CategoryController extends Controller
     public function index()
     {
         $categories = $this->tutorialsCategoryRepository->getAllItems();
-    	return view('admin.tutorials.category', compact('categories'));
+        $themes = $this->tutorialsThemeRepository->getForSelect();
+    	return view('admin.tutorials.category', compact('categories', 'themes'));
     }
 
     /**
@@ -36,27 +41,47 @@ class CategoryController extends Controller
     public function create()
     {
         $item = new ThemeCategories();
-	    return view('admin.tutorials.category-edit', compact('item'));
+	    $themes = $this->tutorialsThemeRepository->getForSelect();
+	    return view('admin.tutorials.category-edit', compact('item', 'themes'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+	/**
+	 * Store a newly created resource in storage.
+	 *
+	 * @param  \Illuminate\Http\Request $request
+	 *
+	 * @return void
+	 */
     public function store(Request $request)
     {
-        $data = $request->input();
-             dd($data);
+        $data = $request->all();
+
+        if(empty($data['slug'])){
+        	$data['slug'] = Str::of($data['th_cat_name'])->slug("-");
+        }
+
+        if(isset($data['th_cat_img'])){
+	        $data['th_cat_img'] = $request->file('th_cat_img')->getClientOriginalName();
+	        $path = env('THEME').'/images/themes';
+	        $request->th_cat_img->move($path, $data['th_cat_img']);
+        }
+
+        $result = (new ThemeCategories())->create($data);
+
+        return $result ? redirect()
+	        ->route('admin.tutorials.category.index', [$result->id])
+	        ->with(['success' => 'Category has been created successfully']) : back()
+	        ->withErrors(['msg' => 'Not stored'])
+	        ->withInput();
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+	/**
+	 * Display the specified resource.
+	 *
+	 * @param  int $id
+	 *
+	 * @return void
+	 */
     public function show($id)
     {
         //
@@ -71,7 +96,8 @@ class CategoryController extends Controller
     public function edit($id)
     {
         $item = $this->tutorialsCategoryRepository->getEdit($id);
-    	return view('admin.tutorials.category-edit', compact('item'));
+	    $themes = $this->tutorialsThemeRepository->getForSelect();
+    	return view('admin.tutorials.category-edit', compact('item', 'themes'));
     }
 
     /**
@@ -83,7 +109,26 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+	    $item = $this->tutorialsCategoryRepository->getEdit($id);
+
+	    $data = $request->all();
+	    if(empty($data['slug'])){
+		    $data['slug'] = Str::of($data['th_cat_name'])->slug("-");
+	    }
+
+	    if(isset($data['th_cat_img'])){
+		    $data['th_cat_img'] = $request->file('th_cat_img')->getClientOriginalName();
+		    $path = env('THEME').'/images/themes';
+		    $request->th_cat_img->move($path, $data['th_cat_img']);
+	    }
+
+	    $result = $item->update($data);
+
+	    return $result ? redirect()
+		    ->route('admin.tutorials.category.index', [$item->id])
+		    ->with(['success' => 'Category '.$item->th_cat_name.' has been updated successfully']) : back()
+		    ->withErrors(['msg' => 'Not stored'])
+		    ->withInput();
     }
 
     /**
@@ -94,6 +139,19 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        //
+	    $item = $this->tutorialsCategoryRepository->getEdit($id);
+
+	    if(isset($item->theme_image)) {
+		    $path = env('THEME').'/images/themes/';
+		    unlink(public_path($path.$item->theme_image));
+	    }
+
+	    $result = ThemeCategories::destroy($id);
+
+	    return $result ? redirect()
+		    ->route('admin.tutorials.index')
+		    ->with(['success' => "Category with id-[$id] deleted successfully"]) : back()
+		    ->withErrors(['msg' => 'Not deleted']);
+
     }
 }

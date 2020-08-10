@@ -1,41 +1,41 @@
 <?php
 namespace App\Repositories;
-use App\Models\ThemeCategories as Model;
 
-class TutorialCategoryRepository extends BaseRepository {
+use App\Models\Themes as Model;
+
+class ThemeRepository extends BaseRepository {
 
 	protected $model;
 
+	/**
+	 * @return mixed
+	 */
 	protected function getModel() {
 		return Model::class;
 	}
 
-	public function getAllItems() {
+	public function getAllThemes($published = null, $unpublished = null){
 		$columns = [
-			'id',
-			'theme_id',
-			'user_id',
-			'th_cat_img',
-			'th_cat_name',
-			'slug',
-			'is_published',
-			'created_at'
+			'id','theme_name', 'theme_image', 'is_published'
 		];
+
 		$result = $this
 			->startConditions()
 			->select($columns)
+			->where('is_published', $published)
+			->orWhere('is_published', $unpublished)
 			->get();
-
+		
 		return $result;
 	}
 
 	public function getForSelect(){
-		$columns = ['id','th_cat_name','is_published'];
+		$columns = ['id', 'theme_name', 'is_published'];
 
 		$result = $this
 			->startConditions()
 			->select($columns)
-			->where('is_published',1)
+			->where('is_published', 1)
 			->get();
 
 		return $result;
