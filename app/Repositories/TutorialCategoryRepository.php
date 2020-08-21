@@ -41,6 +41,23 @@ class TutorialCategoryRepository extends BaseRepository {
 		return $result;
 	}
 
+	/**
+	 * @param $id - the id of theme (Java,php,Javascript).
+	 *
+	 * @return mixed
+	 */
+	public function getAllItemsForFrontend($id){
+		$columns = ['id','th_cat_name','is_published'];
+
+		$result = $this
+			->startConditions()
+			->select("*")
+			->where('theme_id', $id)
+			->get();
+
+		return $result;
+	}
+
 	public function getEdit($id){
 		return $this->startConditions()->find($id);
 	}

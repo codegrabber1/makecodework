@@ -2,18 +2,41 @@
 
 namespace App\Http\Controllers;
 
+use App\Repositories\CategoryRepository;
+use App\Repositories\PostRepository;
+use App\Repositories\ThemeRepository;
+use App\Repositories\TutorialCategoryRepository;
 use Illuminate\Http\Request;
 
 class IndexController extends Controller
 {
-    /**
+
+	private $themeRepository;
+	private $postsRepository;
+	private $blogCategoryRepository;
+	private $tutorialCategoryRepository;
+
+	public function __construct() {
+		$this->themeRepository = app(ThemeRepository::class);
+		$this->postsRepository = app(PostRepository::class);
+		$this->blogCategoryRepository = app(CategoryRepository::class);
+		$this->tutorialCategoryRepository = app(TutorialCategoryRepository::class);
+	}
+
+	/**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        return view(env('THEME').'/index');
+        $themes = $this->themeRepository->getForMain();
+        $lastPosts = $this->postsRepository->getLastPosts(2);
+        $blogCategories = $this->blogCategoryRepository->getForFrontEnd();
+        $tutorialCategories = $this->tutorialCategoryRepository->getForSelect();
+
+    	return view(env('THEME').'/index', compact('themes',
+		        'lastPosts', 'tutorialCategories', 'blogCategories'));
     }
 
     /**

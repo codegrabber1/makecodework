@@ -7,6 +7,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class BlogCategories extends Model
 {
-    //use SoftDeletes;
-	 protected $fillable = ['id','bc_name', 'slug'];
+     use SoftDeletes;
+	 protected $fillable = ['id','bc_name', 'slug', 'is_published'];
 }

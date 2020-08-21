@@ -28,6 +28,17 @@ class PostRepository extends BaseRepository {
 		return $result;
 	}
 
+	public function getLastPosts($countPge = null){
+		$columns = ['id', 'blog_category_id', 'bc_title', 'slug','bc_excerpt',
+			'bc_text', 'bc_image', 'is_published'];
+		$result = $this
+			->startConditions()
+			->select($columns)
+			->where('is_published', 1)
+			->paginate($countPge);
+		return $result;
+	}
+
 
 	public function getEdit($id){
 		return $this->startConditions()->find($id);

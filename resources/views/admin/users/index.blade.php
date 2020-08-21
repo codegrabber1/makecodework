@@ -22,20 +22,25 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="card">
-                            <div class="body">
-                                <table style="width: 100%">
-                                    <tr>
-                                        <td>ID</td>
-                                        <td>User name</td>
-                                        <td>User email</td>
-                                        <td>Roles</td>
-                                        <td>Action</td>
-                                    </tr>
+                            <div class=" table-responsive">
+                                <table class="table table-hover mb-0 c_list c_table" >
+                                    <thead>
+                                        <tr>
+                                            <td>ID</td>
+                                            <td data-breakpoints="xs">User name</td>
+                                            <td data-breakpoints="xs sm md">User email</td>
+                                            <td data-breakpoints="xs sm md">User phone</td>
+                                            <td data-breakpoints="xs sm md">Roles</td>
+                                            <td data-breakpoints="xs">Action</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
                                     @foreach( $users as  $user )
                                         <tr>
                                             <td> {{ $user->id  }}</td>
                                             <td> {{ $user->name  }}</td>
-                                            <td> {{ $user->email  }}</td>
+                                            <td><a href="mailto:{{ $user->email  }}">{{ $user->email  }}</a></td>
+                                            <td>phone here</td>
                                             <td> {{ implode( ', ', $user->roles()->get()->pluck('name')->toArray() )  }}</td>
                                             <td>
                                                 @can("edit-users")
@@ -51,6 +56,7 @@
                                             </td>
                                         </tr>
                                     @endforeach
+                                    </tbody>
                                 </table>
                             </div>
                         </div>

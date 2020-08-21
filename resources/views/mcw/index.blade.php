@@ -1,35 +1,24 @@
 @extends(env('THEME').'.layouts.main')
 
 @section('content')
-    <div class="grid grid-cols-3">
-        <div class="w-2/3 shadow">
-            <img class="object-contain w-auto" src="{{asset(env('THEME')."/images/java.jpg")}}" alt="java">
-            <div class="name">Java</div>
+    <div class="grid grid-cols-3 row-gap-6 col-gap-4">
+        @foreach($themes as $theme)
+        <div class=" shadow">
+            <a href="{{ route('tutorials', $theme->id) }}" title="{{ $theme->theme_name }}">
+                <img class="object-contain " src="{{ asset(env('THEME')).'/images/themes/'. $theme->theme_image }}" alt="{{ $theme->theme_name }}">
+            </a>
+            <div class="name">{{ $theme->theme_name }}</div>
         </div>
-        <div class="w-2/3 shadow">
-            <img class="object-contain w-auto border border-blue-600" src="{{asset(env('THEME')."/images/php.png")}}" alt="php">
-            <div class="name">php</div>
-        </div>
-        <div class="w-2/3 shadow">
-            <img class="object-contain w-auto" src="" alt="html">
-            <div class="name">html/css</div>
-        </div>
-        <div class="w-2/3 shadow">
-            <img class="object-contain w-auto" src="" alt="javascript">
-            <div class="name">javascript</div>
-        </div>
-        <div class="w-2/3 shadow">
-            <img class="object-contain w-auto" src="" alt="ios">
-            <div class="name">ios</div>
-        </div>
-        <div class="w-2/3 shadow">
-            <img class="object-contain w-auto" src="" alt="android">
-            <div class="name">Android</div>
-        </div>
+        @endforeach
     </div>
+    
     <section>
-        
-        here is a main content, which contains blocks with all categories and last posts from blog
+        <h2 class="p-6 bg-blue-400 my-8">Latest news from blog</h2>
+        <ul>
+            @foreach($lastPosts as $item)
+                <li>{!! $item->bc_title !!}</li>
+            @endforeach
+        </ul>
     </section>
     
 @stop

@@ -13,6 +13,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Route::get('/', 'IndexController@index')->name('index');
+Route::get('tutorial/categories/{id}', 'ThemeCategoriesController')->name('tutorials');
+Route::get('tutorial/category/{id}', 'ThemeCategoryController')->name('tutorials.category');
+Route::get('tutorial/post/{id}', 'ThemePostController')->name('tutorials.category.post');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

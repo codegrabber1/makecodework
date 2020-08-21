@@ -25,6 +25,7 @@ class CategoryController extends BaseController
     public function index()
     {
         $categories = $this->blogCategoryRepository->getAllItems();
+        
     	return view('admin.blog.category', compact('categories'));
     }
 
@@ -120,6 +121,14 @@ class CategoryController extends BaseController
      */
     public function destroy($id)
     {
-        //
+        
+    	$item = $this->blogCategoryRepository->getEdit($id);
+
+        $result =  BlogCategories::destroy($id);
+
+	    return $result ? redirect()
+		    ->route('admin.categories.index')
+		    ->with(['success' => "Category with id-[$id] deleted successfully"]) : back()
+		    ->withErrors(['msg' => 'Not deleted']);
     }
 }

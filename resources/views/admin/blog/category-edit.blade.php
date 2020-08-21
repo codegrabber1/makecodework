@@ -55,6 +55,18 @@
 
                                     </div>
                                     <input type="submit" name="submit" class="btn btn-info waves-effect m-t-20 submit" value="POST">
+                                    <div class="checkbox right m-t-20" style="width: auto; float: right" >
+                                        <input type="hidden"
+                                               name="is_published"
+                                               value="0">
+
+                                        <input id="is_published"
+                                               name="is_published"
+                                               type="checkbox"
+                                               value="1"
+                                               @if($item->is_published) checked="checked" @endif >
+                                        <label for="is_published">Publish</label>
+                                    </div>
                                 </form>
                             </div>
                         </div>

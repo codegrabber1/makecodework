@@ -40,6 +40,17 @@ class ThemeRepository extends BaseRepository {
 
 		return $result;
 	}
+	public function getForMain(){
+		$columns = ['id', 'theme_name', 'theme_image', 'is_published'];
+
+		$result = $this
+			->startConditions()
+			->select($columns)
+			->where('is_published', 1)
+			->get();
+
+		return $result;
+	}
 
 	public function getEdit($id){
 		return $this->startConditions()->find($id);

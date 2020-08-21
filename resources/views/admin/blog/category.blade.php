@@ -42,12 +42,13 @@
                                             <td>{{ $item->slug }}</td>
                                             <td>{{ $item->created_at }}</td>
                                             <td>
-                                                <a href="{{ route('admin.categories.edit', $item->id) }}">Edit</a>  |
-                                                <form action="{{ route('admin.categories.destroy', $item->id) }}" method="POST">
+                                                <a style="display: block; float: left" class="btn btn-icon btn-icon-mini btn-round btn-success" href="{{ route('admin.categories.edit', $item->id) }}"><i class="zmdi zmdi-hc-fw"></i></a>
+                                                <form class="align-right" action="{{ route('admin.categories.destroy', $item->id) }}" method="POST">
                                                     @method('delete')
                                                     @csrf
-                                                    Delete
+                                                    <button type="submit" class="btn btn-icon btn-icon-mini btn-round btn-danger" value="Delete"> <i class="zmdi zmdi-delete"></i></button>
                                                 </form>
+                                                
                                                 </td>
                                         </tr>
                                        @endforeach

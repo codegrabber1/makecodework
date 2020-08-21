@@ -29,7 +29,17 @@ class ThemePostRepository extends BaseRepository {
 		return $result;
 	}
 
+	public function getAllItemsForFrontend($id){
+		$columns = ['id','p_title','is_published'];
 
+		$result = $this
+			->startConditions()
+			->select("*")
+			->where('theme_category_id', $id)
+			->get();
+
+		return $result;
+	}
 	public function getEdit($id){
 		return $this->startConditions()->find($id);
 	}

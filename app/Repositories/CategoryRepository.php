@@ -19,9 +19,10 @@ class CategoryRepository extends BaseRepository {
             'id',
             'bc_name',
             'slug',
-            // 'is_published',
+            'is_published',
             'created_at'
             ];
+
         $result = $this
             ->startConditions()
             ->select($columns)
@@ -30,26 +31,10 @@ class CategoryRepository extends BaseRepository {
         return $result;
     }
 
-    public function getItemsForPortfolio($ispublished){
-        $columns = [
-          'id',
-          'bc_name',
-        //   'is_published'
-        ];
-        $result = $this
-            ->startConditions()
-            ->select($columns)
-            // ->where('is_published', $ispublished)
-            ->toBase()
-            ->get();
 
-        return $result;
-    }
-
-    public function getForFrontEnd($ispublished){
+    public function getForFrontEnd(){
         $columns = [
             'id',
-            'slug',
             'bc_name',
             // 'category_img',
             'is_published'
@@ -57,7 +42,7 @@ class CategoryRepository extends BaseRepository {
         $result = $this
             ->startConditions()
             ->select($columns)
-            // ->where('is_published', $ispublished)
+	        ->where('is_published', 1)
             ->toBase()
             ->get();
 

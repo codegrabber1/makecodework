@@ -20,6 +20,9 @@
     <link rel="stylesheet" href="{{ asset('admin/assets/plugins/select2/select2.css') }}" />
 
     <link rel="stylesheet" href="{{ asset('admin/assets/plugins/dropify/css/dropify.min.css') }}">
+
+    <link rel="stylesheet" href="{{ asset('admin/assets/plugins/footable-bootstrap/css/footable.bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('admin/assets/plugins/footable-bootstrap/css/footable.standalone.min.css') }}">
     <link rel="stylesheet" href="{{ asset('admin/assets/css/style.min.css') }}">
     
 </head>
@@ -153,6 +156,10 @@
 <script src="{{ asset('admin/assets/plugins/dropzone/dropzone.js') }}"></script>
 
 <script src="{{ asset('admin/assets/js/pages/forms/advanced-form-elements.js') }}"></script>
+
+<script src="{{ asset('admin/assets/bundles/footable.bundle.js') }}"></script>
+
+<script src="{{ asset('admin/assets/js/pages/tables/footable.js') }}"></script><!-- Custom Js -->
 
 <script src="{{ asset('admin/assets/bundles/mainscripts.bundle.js') }}"></script>
 <script src="{{ asset('admin/assets/js/pages/index.js') }}"></script>
