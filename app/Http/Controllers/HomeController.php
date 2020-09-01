@@ -1,14 +1,15 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Repositories\TutorialCategoryRepository;
 use App\Repositories\CategoryRepository;
-use Illuminate\Http\Request;
+use App\Repositories\PostRepository;
+use App\Repositories\TutorialCategoryRepository;
 
 class HomeController extends Controller
 {
 	private $tutorialsCategoryRepository;
 	private $blogCategoryRepository;
+	private $postsRepository;
 
 	/**
      * Create a new controller instance.
@@ -19,6 +20,7 @@ class HomeController extends Controller
     {
         $this->middleware('auth');
         $this->tutorialsCategoryRepository = app(TutorialCategoryRepository::class);
+	    $this->postsRepository = app(PostRepository::class);
         $this->blogCategoryRepository = app(CategoryRepository::class);
     }
 
@@ -32,6 +34,7 @@ class HomeController extends Controller
 
     	$tutorialsCategory= $this->tutorialsCategoryRepository->getAllItems();
     	$blogCategory= $this->blogCategoryRepository->getAllItems();
-    	return view('admin.home', compact('tutorialsCategory','blogCategory'));
+	    $lastPosts = $this->postsRepository->getLastPosts(3);
+    	return view('admin.home', compact('tutorialsCategory', 'blogCategory','lastPosts'));
     }
 }

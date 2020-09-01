@@ -1,7 +1,7 @@
 <?php
 namespace App\Repositories;
 
-use App\Models\Themes as Model;
+use App\Models\Theme as Model;
 
 class ThemeRepository extends BaseRepository {
 

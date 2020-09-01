@@ -6,7 +6,7 @@ use App\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class ThemePosts extends Model
+class ThemePost extends Model
 {
     use softDeletes;
 
@@ -16,8 +16,12 @@ class ThemePosts extends Model
     ];
 
     public function category(){
-    	return $this->belongsTo(ThemeCategories::class, 'theme_category_id', 'id');
+    	return $this->belongsTo(ThemeCategory::class, 'theme_category_id', 'id');
     }
+
+	public function comments(){
+		return $this->hasMany(ThemePostsComment::class);
+	}
 
 	public function user(){
 		return $this->belongsTo(User::class, 'user_id', 'id');

@@ -28,7 +28,7 @@
 </head>
 <body class="theme-blush">
     <!-- Overlay For Sidebars -->
-<div class="overlay"></div>
+{{--<div class="overlay"></div>--}}
    <!-- Main Search -->
 <div id="search">
     <button id="close" type="button" class="close btn btn-primary btn-icon btn-icon-mini btn-round">x</button>
@@ -42,7 +42,7 @@
 <aside id="leftsidebar" class="sidebar">
     <div class="navbar-brand">
         <button class="btn-menu ls-toggle-btn" type="button"><i class="zmdi zmdi-menu"></i></button>
-        <a href="{{ route('home') }}"><img src="{{ asset('admin/assets/images/logo.svg') }}" width="25" alt="{{ config('app.name', 'Makecodework') }}"><span class="m-l-10">{{ config('app.name', 'Makecodework') }}</span></a>
+        <a target="_blank" href="{{ route('index') }}"><img src="{{ asset('admin/assets/images/logo.svg') }}" width="25" alt="{{ config('app.name', 'Makecodework') }}"><span class="m-l-10">{{ config('app.name', 'Makecodework') }}</span></a>
     </div>
     <div class="menu">
         <ul class="list">
@@ -93,16 +93,15 @@
                     <li><a href="{{ route('admin.tutorials.theme.index') }}">Theme</a></li>
                     <li><a href="{{ route('admin.tutorials.category.index') }}">Categories</a></li>
                     <li><a href="{{ route('admin.tutorials.post.index') }}">Tutorial Posts</a></li>
-                    <li><a href="blog-grid.html">Grid View</a></li>
+                    <li><a href="{{ route('admin.tutorials.comments.index') }}">Comments</a></li>
                     <li><a href="blog-details.html">Blog Details</a></li>
                 </ul>
             </li>
             <li><a href="javascript:void(0);" class="menu-toggle"><i class="zmdi zmdi-blogger"></i><span>Blog</span></a>
                 <ul class="ml-menu">
-                    
                     <li><a href="{{ route('admin.categories.index') }}">Categories</a></li>
                     <li><a href="{{ route('admin.posts.index') }}">Posts</a></li>
-                    <li><a href="blog-grid.html">Grid View</a></li>
+                    <li><a href="{{ route('admin.comments.index') }}">Comments</a></li>
                     <li><a href="blog-details.html">Blog Details</a></li>
                 </ul>
             </li>

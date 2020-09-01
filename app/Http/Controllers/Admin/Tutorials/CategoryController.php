@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin\Tutorials;
 
 use App\Http\Controllers\Controller;
-use App\Models\ThemeCategories;
+use App\Models\ThemeCategory;
 use App\Repositories\ThemeRepository;
 use App\Repositories\TutorialCategoryRepository;
 use Illuminate\Http\Request;
@@ -40,7 +40,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        $item = new ThemeCategories();
+        $item = new ThemeCategory();
 	    $themes = $this->tutorialsThemeRepository->getForSelect();
 	    return view('admin.tutorials.category-edit', compact('item', 'themes'));
     }
@@ -66,7 +66,7 @@ class CategoryController extends Controller
 	        $request->th_cat_img->move($path, $data['th_cat_img']);
         }
 
-        $result = (new ThemeCategories())->create($data);
+        $result = (new ThemeCategory()) ->create($data);
 
         return $result ? redirect()
 	        ->route('admin.tutorials.category.index', [$result->id])
@@ -146,7 +146,7 @@ class CategoryController extends Controller
 		    unlink(public_path($path.$item->theme_image));
 	    }
 
-	    $result = ThemeCategories::destroy($id);
+	    $result = ThemeCategory ::destroy($id);
 
 	    return $result ? redirect()
 		    ->route('admin.tutorials.index')

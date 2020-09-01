@@ -45,11 +45,17 @@
     </div>
     <div class="container-fluid">
         <h2>Tutorial Category</h2>
-        @foreach($tutorialsCategory as $item)
-        @endforeach
+        <ul>
+            @foreach($tutorialsCategory as $item)
+                <li><a href="">{{ $item->th_cat_name }}</a></li>
+            @endforeach
+        </ul>
+
         <h2>Blog Category</h2>
-        @foreach($blogCategory as $item)
-            {{ $item->bc_name }}
-        @endforeach
+        <ul>
+            @foreach($blogCategory as $item)
+                <li><a href="">{{ $item->bc_name }}</a></li>
+            @endforeach
+        </ul>
     </div>
 @endsection

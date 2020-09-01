@@ -2,4 +2,19 @@
 
 @import "tailwindcss/components";
 
+body{
+    /*font-family: 'Roboto', sans-serif;*/
+}
+.navBlock {
+    @apply bg-white mb-3 border border-b_color ;
+}
+.navBlock ul li {
+    @apply border-b ;
+}
+.navBlock ul li:last-child {
+    @apply border-none
+}
+.navBlock ul li a {
+    @apply my-1 block mx-4 my-2;
+}
 @import "tailwindcss/utilities";

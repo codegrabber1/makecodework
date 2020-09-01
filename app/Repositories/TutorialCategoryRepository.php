@@ -1,6 +1,6 @@
 <?php
 namespace App\Repositories;
-use App\Models\ThemeCategories as Model;
+use App\Models\ThemeCategory as Model;
 
 class TutorialCategoryRepository extends BaseRepository {
 
@@ -47,12 +47,13 @@ class TutorialCategoryRepository extends BaseRepository {
 	 * @return mixed
 	 */
 	public function getAllItemsForFrontend($id){
-		$columns = ['id','th_cat_name','is_published'];
+		$columns = ['id','th_cat_name','theme_id', 'user_id', 'th_cat_img','is_published', 'created_at'];
 
 		$result = $this
 			->startConditions()
-			->select("*")
+			->select($columns)
 			->where('theme_id', $id)
+			->where('is_published', 1)
 			->get();
 
 		return $result;

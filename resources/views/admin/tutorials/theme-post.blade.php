@@ -42,7 +42,7 @@
                                         <div class="blogitem-header">
                                             <div class="blogitem-meta">
                                                 <span><i class="zmdi zmdi-account"></i>By <a href="javascript:void(0);">{{ Auth::user()->name }}</a></span>
-                                                <span><i class="zmdi zmdi-comments"></i><a href="blog-details.html">Comments(3)</a></span>
+                                                <span><i class="zmdi zmdi-comments"></i><a href="blog-details.html">Comments({{ count($post->comments) }})</a></span>
                                             </div>
                                             <div class="blogitem-share">
                                                 <ul class="list-unstyled mb-0">

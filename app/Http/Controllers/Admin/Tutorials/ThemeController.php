@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin\Tutorials;
 
 use App\Http\Controllers\Admin\BaseController;
-use App\Models\Themes;
+use App\Models\Theme;
 use App\Repositories\ThemeRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -35,7 +35,7 @@ class ThemeController extends BaseController
      */
     public function create()
     {
-        $item = new Themes();
+        $item = new Theme();
         $themes = $this->themeRepository->getForSelect();
         return view('admin.tutorials.theme-edit', compact('item', 'themes'));
 
@@ -65,7 +65,7 @@ class ThemeController extends BaseController
 		    $request->theme_image->move($path, $data['theme_image']);
 	    }
 	    
-	    $item = (new Themes())->create($data);
+	    $item = (new Theme()) ->create($data);
 
 	    return $item ? redirect()
 		    ->route('admin.tutorials.theme.index', [$item->id])
@@ -142,7 +142,7 @@ class ThemeController extends BaseController
 		    unlink(public_path($path.$item->theme_image));
 	    }
 
-	    $result = Themes::destroy($id);
+	    $result = Theme ::destroy($id);
 
 	    return $result ? redirect()
 		    ->route('admin.tutorials.theme.index')

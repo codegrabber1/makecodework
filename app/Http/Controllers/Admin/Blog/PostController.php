@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin\Blog;
 
 use App\Http\Controllers\Admin\BaseController;
-use App\Models\BlogPosts;
+use App\Models\BlogPost;
 use App\Repositories\CategoryRepository;
 use App\Repositories\PostRepository;
 use Illuminate\Http\Request;
@@ -40,7 +40,7 @@ class PostController extends BaseController
      */
     public function create()
     {
-        $posts = new BlogPosts();
+        $posts = new BlogPost();
 	    $categories = $this->blogCategoryRepository->getAllItems();
     	return view('admin.blog.post-edit', compact('posts','categories'));
     }
@@ -69,7 +69,7 @@ class PostController extends BaseController
 
 	    $data['bc_excerpt'] = Str::limit($data['bc_text'], 200, ' ...');
 
-	    $item = (new BlogPosts())->create($data);
+	    $item = (new BlogPost()) ->create($data);
 
 	    return $item ? redirect()
 		    ->route('admin.posts.index', [$item->id])
@@ -148,7 +148,7 @@ class PostController extends BaseController
 		    unlink(public_path($path.$item->bc_image));
 	    }
 
-	    $result = BlogPosts::destroy($id);
+	    $result = BlogPost::destroy($id);
 
 	    return $result ? redirect()
 		    ->route('admin.posts.index')

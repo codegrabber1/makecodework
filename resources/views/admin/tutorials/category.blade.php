@@ -44,7 +44,8 @@
                                             <td>{{ $item->theme->theme_name }}</td>
                                             <td>{{ $item->user->name }}</td>
                                             <td>{{ $item->th_cat_name }}</td>
-                                            <td>@if($item->is_published)
+                                            <td>
+                                                @if($item->is_published)
                                                     <span class="text-success">Published</span>
                                                 @else
                                                     <span class="text-danger">Unpublished</span>

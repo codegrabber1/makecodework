@@ -6,7 +6,7 @@ use App\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class ThemeCategories extends Model
+class ThemeCategory extends Model
 {
     use softDeletes;
 	protected $fillable = [
@@ -20,11 +20,11 @@ class ThemeCategories extends Model
 	];
 
 	public function theme() {
-		return $this->belongsTo(Themes::class);
+		return $this->belongsTo(Theme::class);
 	}
 
 	public function theme_post(){
-		return $this->hasMany(ThemePosts::class);
+		return $this->hasMany(ThemePost::class);
 	}
 	public function user(){
 		return $this->belongsTo(User::class);

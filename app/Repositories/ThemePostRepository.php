@@ -1,7 +1,7 @@
 <?php
 namespace App\Repositories;
 
-use App\Models\ThemePosts as Model;
+use App\Models\ThemePost as Model;
 
 
 class ThemePostRepository extends BaseRepository {
@@ -29,14 +29,15 @@ class ThemePostRepository extends BaseRepository {
 		return $result;
 	}
 
-	public function getAllItemsForFrontend($id){
-		$columns = ['id','p_title','is_published'];
+	public function getAllItemsForFrontend($countPost = null, $id){
+		$columns = ['id','p_title', 'user_id', 'p_image', 'p_excerpt', 'is_published','created_at'];
 
 		$result = $this
 			->startConditions()
-			->select("*")
+			->select($columns)
 			->where('theme_category_id', $id)
-			->get();
+			->where('is_published', 1)
+			->paginate($countPost);
 
 		return $result;
 	}

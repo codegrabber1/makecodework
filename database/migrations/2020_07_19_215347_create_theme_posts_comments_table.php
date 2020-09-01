@@ -16,6 +16,8 @@ class CreateThemePostsCommentsTable extends Migration
         Schema::create('theme_posts_comments', function (Blueprint $table) {
             $table->id();
             $table->biginteger('theme_post_id')->unsigned();
+            $table->biginteger('user_id')->unsigned()->nullable();
+            $table->biginteger('parent_id')->unsigned();
             $table->string('author_name', 60);
             $table->string('author_email', 100)->unique();
             $table->text('comment_text');
@@ -25,6 +27,7 @@ class CreateThemePostsCommentsTable extends Migration
             $table->softDeletes();
 
             $table->foreign('theme_post_id')->references('id')->on('theme_posts');
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 

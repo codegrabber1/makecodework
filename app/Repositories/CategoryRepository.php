@@ -1,7 +1,7 @@
 <?php
 namespace App\Repositories;
 
-use App\Models\BlogCategories as Model;
+use App\Models\BlogCategory as Model;
 
 class CategoryRepository extends BaseRepository {
     /**
@@ -49,6 +49,18 @@ class CategoryRepository extends BaseRepository {
         return $result;
     }
 
+    public function getCatForPosts($id){
+	    $columns = ['id','bc_name','is_published'];
+
+	    $result = $this
+		    ->startConditions()
+		    ->select($columns)
+		    ->where('id', $id)
+		    ->orWhere('is_published', 1)
+		    ->get();
+
+	    return $result;
+    }
     public function getEdit($id){
         return $this->startConditions()->find($id);
     }

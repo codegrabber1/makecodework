@@ -7,51 +7,35 @@
     <title>Laravel</title>
 
     <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
-    <link rel="stylesheet" href="{{asset(env('THEME')).'/css/main.min.css'}}">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css">
+    <link rel="stylesheet" href="{{asset(env('THEME')).'/css/main.css'}}">
 
 </head>
-<body>
-<div class="wrapper w-full">
+<body class="bg-background_sidebar font-main-font">
+<div class="wrapper  ">
 
-    <div class="container mx-auto border border-blue-600 mb-8 flex flex-row justify-between">
+    <div class="container mx-auto flex  px-2 mb-4">
 
-        <div class=" w-2/6">
-
-            <nav class="">
-                <ul class="">
-                    @foreach($tutorialCategories as $item)
-                    <li class=""><a href="#">{{ $item->th_cat_name }}</a></li>
-                    @endforeach
-                    <li>Blog</li>
-                    @foreach($blogCategories as $item)
-                    <li class=""><a href="#">{{ $item->bc_name }}</a></li>
-                    @endforeach
-                </ul>
-            </nav>
-
-            <div class="search">
-                <input type="text" name="search" value="search">
-            </div>
-
-            <div class="logo border border-green-600  mr-5">Logo</div>
-        </div>
+        @yield('sidebar')
         
-        <div class=" w-5/6 ">@yield('content')</div>
+        <div class=" w-full  mt-4 ">@yield('content')</div>
         
     </div>
     
     <footer class="w-full bg-blue-200 flex flex-row">
-        <div class="container mx-auto flex flex-row justify-between">
-            <h2>Footer</h2>  
-            <ul class="mr-2 ml-2">
-                <li><a href="#">menu item</a></li>
-                <li><a href="#">menu item</a></li>
-            </ul>
+        <div class="container mx-auto flex flex-row justify-center">
+            <a href="">makecodework</a>&nbsp copyright 	&copy;  <?=date('Y')?>
         </div>
 
     </footer>
 </div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="{{ asset(env("THEME")).'/js/scripts.js' }}"></script>
+<script src="{{ asset(env("THEME")).'/js/comment-reply.js' }}"></script>
+
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/uk_UA/sdk.js#xfbml=1&version=v8.0&appId=498188843586746&autoLogAppEvents=1" nonce="KoUidzyQ"></script>
 </body>
 </html>

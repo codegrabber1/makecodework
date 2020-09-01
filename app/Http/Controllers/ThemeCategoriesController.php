@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Repositories\CategoryRepository;
+use App\Repositories\PostRepository;
 use App\Repositories\ThemePostRepository;
 use App\Repositories\TutorialCategoryRepository;
 
@@ -10,8 +11,7 @@ class ThemeCategoriesController extends Controller
 {
 	private $tutorialCategoryRepository;
 	private $blogCategoryRepository;
-	private $postTutorialCategoryRepository;
-	
+	private $postsRepository;
 
 	/**
 	 * ThemeCategoriesController constructor.
@@ -19,7 +19,7 @@ class ThemeCategoriesController extends Controller
 	public function __construct() {
 		$this->tutorialCategoryRepository = app(TutorialCategoryRepository::class);
 		$this->blogCategoryRepository = app(CategoryRepository::class);
-		$this->postTutorialCategoryRepository = app(ThemePostRepository::class);
+		$this->postsRepository = app(PostRepository::class);
 	}
 
 
@@ -27,24 +27,11 @@ class ThemeCategoriesController extends Controller
 
 		$blogCategories = $this->blogCategoryRepository->getForFrontEnd();
 		$tutorialCategories = $this->tutorialCategoryRepository->getAllItemsForFrontend($id);
-
-		$allPosts =  $this->getAllPosts($id);
+		$lastPosts = $this->postsRepository->getLastPosts(3);
+		
 
 		return view(env('THEME').'/tutorials',
-			compact('blogCategories','tutorialCategories','tutorialCategories','allPosts'));
+			compact('blogCategories','tutorialCategories','lastPosts'));
 	}
 
-
-	public function getAllPosts($id){
-
-		$tutorialCategories = $this->tutorialCategoryRepository->getAllItemsForFrontend($id);
-
-		foreach ($tutorialCategories as $category) {
-			
-			$allPosts = $this->postTutorialCategoryRepository->getAllItemsForFrontend($category->id);
-
-			return $allPosts;
-		}
-
-	}
 }

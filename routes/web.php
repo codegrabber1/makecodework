@@ -16,6 +16,16 @@ Route::get('/', 'IndexController@index')->name('index');
 Route::get('tutorial/categories/{id}', 'ThemeCategoriesController')->name('tutorials');
 Route::get('tutorial/category/{id}', 'ThemeCategoryController')->name('tutorials.category');
 Route::get('tutorial/post/{id}', 'ThemePostController')->name('tutorials.category.post');
+Route::resource('/tutorial/comment','ThemeCommentController')->only('store')->names('tutorial.comment');
+
+$blogGroup = ['namespace'=>'Blog'];
+
+Route::group($blogGroup, function(){
+ Route::get('/blog', 'BlogController')->name('blog');
+ Route::get('/blog/category/{id}', 'BlogCategoryController')->name('blog.category');
+ Route::get('/blog/post/{id}', 'BlogPostController')->name('blog.category.post');
+ Route::resource('/comment','BlogCommentController', ['only'=>['store']]);
+});
 
 Auth::routes();
 
@@ -46,6 +56,10 @@ Route::group($group, function(){
 	  ->only($methods)
 	  ->names('admin.posts');
 
+	Route::resource('/comments', 'Blog\CommentController')
+	     ->only($methods)
+	     ->names('admin.comments');
+
   Route::resource('/tutorials/theme', 'Tutorials\ThemeController')
 	  ->only($methods)
 	  ->names('admin.tutorials.theme');
@@ -58,6 +72,9 @@ Route::group($group, function(){
 	 ->only($methods)
 	 ->names('admin.tutorials.post');
 
+	Route::resource('/tutorials/comments', 'Tutorials\CommentController')
+	     ->only($methods)
+	     ->names('admin.tutorials.comments');
 
 });
 

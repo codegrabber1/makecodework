@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin\Tutorials;
 
 use App\Http\Controllers\Admin\BaseController;
-use App\Models\ThemePosts as Model;
+use App\Models\ThemePost as Model;
 
 use App\Repositories\ThemePostRepository;
 use App\Repositories\TutorialCategoryRepository;

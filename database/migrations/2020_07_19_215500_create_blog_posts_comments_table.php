@@ -16,6 +16,8 @@ class CreateBlogPostsCommentsTable extends Migration
         Schema::create('blog_posts_comments', function (Blueprint $table) {
             $table->id();
             $table->biginteger('blog_post_id')->unsigned();
+	        $table->biginteger('user_id')->unsigned()->nullable();
+	        $table->biginteger('parent_id')->unsigned();
             $table->string('author_name', 60);
             $table->string('author_email', 100)->unique();
             $table->text('comment_text');
@@ -27,6 +29,7 @@ class CreateBlogPostsCommentsTable extends Migration
             $table->softDeletes();
 
             $table->foreign('blog_post_id')->references('id')->on('blog_posts');
+	        $table->foreign('user_id')->references('id')->on('users');
         });
     }
 

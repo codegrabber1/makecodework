@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin\Blog;
 
 use App\Http\Controllers\Admin\BaseController;
 
-use App\Models\BlogCategories;
+use App\Models\BlogCategory;
 use App\Repositories\CategoryRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -36,7 +36,7 @@ class CategoryController extends BaseController
      */
     public function create()
     {
-        $item = new BlogCategories();
+        $item = new BlogCategory();
         
         return view('admin.blog.category-edit', compact('item'));
     }
@@ -55,7 +55,7 @@ class CategoryController extends BaseController
 		    $data['slug'] = Str::of($data['bc_name'])->slug('-');
 	    }
 	    
-	    $result = (new BlogCategories())->create($data);
+	    $result = (new BlogCategory()) ->create($data);
 
 	    return $result ? redirect()
 		    ->route('admin.categories.index', [$result->id])
@@ -124,7 +124,7 @@ class CategoryController extends BaseController
         
     	$item = $this->blogCategoryRepository->getEdit($id);
 
-        $result =  BlogCategories::destroy($id);
+        $result =  BlogCategory ::destroy($id);
 
 	    return $result ? redirect()
 		    ->route('admin.categories.index')

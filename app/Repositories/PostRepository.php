@@ -1,7 +1,7 @@
 <?php
 namespace App\Repositories;
 
-use App\Models\BlogPosts as Model;
+use App\Models\BlogPost as Model;
 
 class PostRepository extends BaseRepository {
 
@@ -30,7 +30,8 @@ class PostRepository extends BaseRepository {
 
 	public function getLastPosts($countPge = null){
 		$columns = ['id', 'blog_category_id', 'bc_title', 'slug','bc_excerpt',
-			'bc_text', 'bc_image', 'is_published'];
+			'bc_text', 'bc_image', 'is_published', 'created_at'];
+
 		$result = $this
 			->startConditions()
 			->select($columns)
@@ -39,6 +40,18 @@ class PostRepository extends BaseRepository {
 		return $result;
 	}
 
+	public function getPostsForCategory($countPge = null, $id){
+		$columns = ['id', 'blog_category_id', 'bc_title', 'slug','bc_excerpt','bc_image', 'is_published', 'created_at'];
+
+		$result = $this
+			->startConditions()
+			->select($columns)
+			->where('blog_category_id', $id)
+			->where('is_published', 1)
+			->paginate($countPge);
+
+		return $result;
+	}
 
 	public function getEdit($id){
 		return $this->startConditions()->find($id);

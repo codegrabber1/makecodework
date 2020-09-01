@@ -7,8 +7,9 @@ use App\Repositories\PostRepository;
 use App\Repositories\ThemeRepository;
 use App\Repositories\TutorialCategoryRepository;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
 
-class IndexController extends Controller
+class IndexController extends BaseController
 {
 
 	private $themeRepository;
@@ -17,10 +18,13 @@ class IndexController extends Controller
 	private $tutorialCategoryRepository;
 
 	public function __construct() {
+		parent::__construct();
 		$this->themeRepository = app(ThemeRepository::class);
 		$this->postsRepository = app(PostRepository::class);
 		$this->blogCategoryRepository = app(CategoryRepository::class);
 		$this->tutorialCategoryRepository = app(TutorialCategoryRepository::class);
+
+		$this->template = env("THEME").'.index';
 	}
 
 	/**
@@ -31,12 +35,20 @@ class IndexController extends Controller
     public function index()
     {
         $themes = $this->themeRepository->getForMain();
-        $lastPosts = $this->postsRepository->getLastPosts(2);
+        $lastPosts = $this->postsRepository->getLastPosts(4);
         $blogCategories = $this->blogCategoryRepository->getForFrontEnd();
         $tutorialCategories = $this->tutorialCategoryRepository->getForSelect();
 
-    	return view(env('THEME').'/index', compact('themes',
-		        'lastPosts', 'tutorialCategories', 'blogCategories'));
+
+        
+        $this->vars = Arr::add($this->vars, 'themes', $themes);
+        $this->vars = Arr::add($this->vars, 'lastPosts', $lastPosts);
+        $this->vars = Arr::add($this->vars, 'blogCategories', $blogCategories);
+        $this->vars = Arr::add($this->vars, 'tutorialCategories',  $tutorialCategories);
+
+		return $this->renderOut();
+//return view(env('THEME').'/index', compact('themes',
+//		        'lastPosts', 'tutorialCategories', 'blogCategories'));
     }
 
     /**
