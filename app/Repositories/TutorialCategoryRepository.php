@@ -46,7 +46,7 @@ class TutorialCategoryRepository extends BaseRepository {
 	 *
 	 * @return mixed
 	 */
-	public function getAllItemsForFrontend($id){
+	public function getAllItemsForFrontend($caountPosts = null, $id){
 		$columns = ['id','th_cat_name','theme_id', 'user_id', 'th_cat_img','is_published', 'created_at'];
 
 		$result = $this
@@ -54,7 +54,7 @@ class TutorialCategoryRepository extends BaseRepository {
 			->select($columns)
 			->where('theme_id', $id)
 			->where('is_published', 1)
-			->get();
+			->paginate($caountPosts);
 
 		return $result;
 	}

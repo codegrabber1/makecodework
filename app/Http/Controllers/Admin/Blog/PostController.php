@@ -6,8 +6,10 @@ use App\Http\Controllers\Admin\BaseController;
 use App\Models\BlogPost;
 use App\Repositories\CategoryRepository;
 use App\Repositories\PostRepository;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Illuminate\Validation\ValidationException;
 
 class PostController extends BaseController
 {
@@ -76,6 +78,54 @@ class PostController extends BaseController
 		    ->with(['success' => 'Item has ben created successfully']) : back()
 		    ->withErrors(['msg' => 'Not stored'])
 		    ->withInput();
+    }
+	/**
+	 * Store images from articles.
+	 *
+	 * @param  \Illuminate\Http\Request  $request
+	 *
+	 */
+    public function upload(Request $request){
+	    try {
+		    $this -> validate( request(), [
+			    'upload' => 'required|mimes:jpeg,png,bmp',
+		    ] );
+	    } catch ( ValidationException $e ) {
+	    }
+	    if($request->hasFile('upload')) {
+
+		    //get filename with extension
+		    $filenamewithextension = $request->file('upload')->getClientOriginalName();
+
+		    //get filename without extension
+		    $filename = pathinfo($filenamewithextension, PATHINFO_FILENAME);
+
+		    //get file extension
+		    $extension = $request->file('upload')->getClientOriginalExtension();
+
+		    //filename to store
+		    $filenametostore = $filename.'_'.time().'.'.$extension;
+		    $year = Carbon::now()->year;
+		    //Upload File
+		    $path = env('THEME')."/images/blog/articles/{$year}/";
+//		    $request->file('upload')->move(public_path($path), $filenametostore);
+//			$request->file('upload')->storeAs(env('THEME').'/images/blog/articles', $filenametostore);
+
+		    if(file_exists($path . $filenametostore)) {
+			    $filenametostore = Carbon::now()->timestamp . $filenametostore;
+		    }
+		    $request->file('upload')->move(public_path($path), $filenametostore);
+
+		    $CKEditorFuncNum = $request->input('CKEditorFuncNum');
+		    $url = asset($path.$filenametostore);
+
+		    $msg = 'Image successfully uploaded';
+		    $re = "<script>window.parent.CKEDITOR.tools.callFunction($CKEditorFuncNum, '$url', '$msg')</script>";
+
+		    // Render HTML output
+		    @header('Content-type: text/html; charset=utf-8');
+		    echo $re;
+	    }
     }
 
     /**

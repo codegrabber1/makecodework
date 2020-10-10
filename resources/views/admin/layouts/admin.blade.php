@@ -73,7 +73,7 @@
                     <li><a href="{{ route('admin.tutorials.theme.index') }}">Email</a></li>
                     <li><a href="{{ route('admin.tutorials.category.index') }}">Categories</a></li>
                     <li><a href="{{ route('admin.tutorials.post.index') }}">Tutorial Posts</a></li>
-                    <li><a href="blog-grid.html">Grid View</a></li>
+                    <li><a href="{{ route('admin.settings.index') }}">Settings</a></li>
                     <li><a href="blog-details.html">Blog Details</a></li>
                 </ul>
             </li>
@@ -142,8 +142,10 @@
     @yield('content')
 </section>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/ckeditor5/21.0.0/ckeditor.js"></script>
-<script src="https://ckeditor.com/apps/ckfinder/3.5.0/ckfinder.js"></script>
+
+<script src="//cdn.ckeditor.com/4.15.0/standard/ckeditor.js"></script>
+{{--<script src="https://cdnjs.cloudflare.com/ajax/libs/ckeditor5/21.0.0/ckeditor.js"></script>--}}
+{{--<script src="https://ckeditor.com/apps/ckfinder/3.5.0/ckfinder.js"></script>--}}
 <script src="{{ asset('admin/assets/bundles/libscripts.bundle.js') }}"></script> <!-- Lib Scripts Plugin Js ( jquery.v3.2.1, Bootstrap4 js) -->
 <script src="{{ asset('admin/assets/bundles/vendorscripts.bundle.js') }}"></script> <!-- slimscroll, waves Scripts Plugin Js -->
 
@@ -162,5 +164,14 @@
 
 <script src="{{ asset('admin/assets/bundles/mainscripts.bundle.js') }}"></script>
 <script src="{{ asset('admin/assets/js/pages/index.js') }}"></script>
+    <script>
+        CKEDITOR.replace( 'editor', {
+            filebrowserUploadUrl: "{{ route('admin.posts.upload',['_token'=>csrf_token() ]) }}",
+            filebrowserUploadMethod: 'form',
+            filebrowserWindowWidth: '840',
+            filebrowserWindowHeight: '680'
+
+        });
+    </script>
 </body>
 </html>

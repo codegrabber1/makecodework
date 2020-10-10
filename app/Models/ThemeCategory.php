@@ -26,6 +26,7 @@ class ThemeCategory extends Model
 	public function theme_post(){
 		return $this->hasMany(ThemePost::class);
 	}
+
 	public function user(){
 		return $this->belongsTo(User::class);
 	}

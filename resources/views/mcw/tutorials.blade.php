@@ -17,15 +17,14 @@
 
     @if(!empty($tutorialCategories))
     <div class="container">
-        <div class="grid gap-2 grid-cols-3 ">
+        <div class="grid gap-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 ">
             @foreach($tutorialCategories as $post)
-                
-                <div class="bg-white navBlock ">
+                <div class="bg-white navBlock shadow">
                     <img class="w-full max-h-64 h-64" src="{{ asset(env('THEME')).'/images/themes/'.$post->th_cat_img }}" alt="">
-                    <h3 class="uppercase m-2">
+                    <h3 class="mx-4 text-2xl">
                         <strong>Category:</strong> &nbsp;<a href="{{ route('tutorials.category', $post->id) }}">{{ $post->th_cat_name }}</a>
                     </h3>
-                    <div class="meta text-sm">
+                    <div class="meta text-sm text-gray-500 text-sm mx-1 my-2">
                         <ul class="flex justify-around my-1">
                             <li>Author: {{ $post->user->name }} </li>
                             <li>Theme: {{ $post->theme->theme_name }}</li>
@@ -35,6 +34,11 @@
                 </div>
             @endforeach
         </div>
+        @if($tutorialCategories->total() > $tutorialCategories->count())
+            <div class="container ml-6 grid-cols-1">
+                {{ $tutorialCategories->links() }}
+            </div>
+        @endif
     </div>
         
     @else

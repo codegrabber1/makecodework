@@ -3,9 +3,9 @@
     @include(env('THEME').'.inner-sidebar')
 @endsection
 @section('content')
-    <div class="grid grid-cols-2 row-gap-1 gap-1">
+    <div class="grid grid-cols-2 row-gap-1 gap-1 mr-6">
         @foreach($lastPosts as $post)
-            <div class="border-2 m-2 p-3 bg-white">
+            <div class="border-2 mr-2 p-3 bg-white">
                <h2><a href="{{ route('blog.category.post', $post->id) }}">{!! $post->bc_title !!} </a></h2>
                 <img src="{{ asset(env('THEME')).'/images/blog/'.$post->bc_image }}" alt="{{ $post->bc_title }}">
                 <div class="bg-blue-200 p-3 flex flex-row">

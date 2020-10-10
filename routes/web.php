@@ -56,7 +56,9 @@ Route::group($group, function(){
 	  ->only($methods)
 	  ->names('admin.posts');
 
-	Route::resource('/comments', 'Blog\CommentController')
+  Route::post('/posts/upload', 'Blog\PostController@upload')->name('admin.posts.upload');
+  
+  Route::resource('/comments', 'Blog\CommentController')
 	     ->only($methods)
 	     ->names('admin.comments');
 
@@ -69,12 +71,15 @@ Route::group($group, function(){
 	 ->names('admin.tutorials.category');
 
   Route::resource('/tutorials/post', 'Tutorials\ThemePostController')
-	 ->only($methods)
+	 ->only(['index','create','edit','upload','store','update', 'destroy'])
 	 ->names('admin.tutorials.post');
 
 	Route::resource('/tutorials/comments', 'Tutorials\CommentController')
 	     ->only($methods)
 	     ->names('admin.tutorials.comments');
 
+	Route::resource('/settings', 'SettingController')
+	     ->only($methods)
+	     ->names('admin.settings');
 });
 

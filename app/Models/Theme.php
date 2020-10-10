@@ -14,4 +14,5 @@ class Theme extends Model
 	public function themeCategory(){
 		return $this->hasMany(ThemeCategory::class);
 	}
+
 }

@@ -3,10 +3,10 @@
     @include(env('THEME').'.inner-sidebar')
 @endsection
 @section('content')
-    <section class="bg-white shadow-sm px-4 ml-6">
+    <section class="bg-white shadow-sm px-4 mr-6">
    
     <div class="py-3 divide-y divide-y-reverse divide-gray-400">
-        <h1 class="text-3xl ">{{ $getPost->p_title }}</h1>
+        <h1 class="text-2xl ">{{ $getPost->p_title }}</h1>
 
         <div class="meta flex pb-4 ">
             <ol class="flex divide-x divide-gray-400">
@@ -16,7 +16,7 @@
                     {{ \Carbon\Carbon::parse($getPost->created_at )->locale('uk')->isoFormat('D MMMM Y') }} </li>
                 <li class="text-gray-500 text-sm mx-1 pl-2"><strong>Updated:</strong>
                     {{ \Carbon\Carbon::parse($getPost->updated_at )->locale('uk')->isoFormat('D MMMM Y') }} </li>
-                <li class="text-gray-500 text-sm mx-1 pl-2">
+                <li class="text-gray-500 mx-1 pl-2">
                     @if(count($getPost->comments) == 0)
                         <p>No comments</p>
                         @else
@@ -29,16 +29,16 @@
     </div>
 
     <img class="mx-auto" src="{{ asset(env('THEME')).'/images/themes/'.$getPost->p_image }}" alt="{{ $getPost->p_title }}">
-    <div class="leading-8 my-4 px-10 text-lg">{!! $getPost->p_text !!}</div>
-
-    <div id="comments" class="border-t-4 mt-3">
+    <div class="leading-8 my-4 px-5 text-base">{!! $getPost->p_text !!}</div>
+    </section>
+    <section class="mr-6">
+    <div id="comments" class="border-t-4 mt-3 shadow">
         <div class="wrap_result"></div>
         <h3 class="title slim">
             @if(count($getPost->comments) == 0)
-                <p>No comments yet!</p>
+                <div class="p-2 bg-white mb-2"><p>No comments</p></div>
             @else
                 <strong>Comments: </strong> {{ count($getPost->comments) }}
-
             @endif
         </h3>
        
@@ -56,24 +56,24 @@
     </div>
 
 
-    <div id="respond" class="w-3/4 mx-auto border border-green-200 overflow-hidden">
-        <h3 class="title slim">Leave a Reaply
+    <div id="respond" class="overflow-hidden bg-white py-3 shadow">
+        <h3 class="title slim w-3/4 mx-auto my-3">Leave a Reaply
             <small><a rel="nofollow" id="cancel-comment-reply-link" href="#respond" style="display:none;">Cancel reply</a></small></h3>
-        <form action="{{ route('tutorial.comment.store') }}" method="post" id="commentform" class="comments-form">
+        <form action="{{ route('tutorial.comment.store') }}" method="post" id="commentform" class="comments-form w-5/6 mx-auto">
             @csrf
             @if(!Auth::check())
-                <div class="flex justify-between">
+                <div class="flex justify-between my-3">
                     <div class="w-full mr-1">
-                        <label>Name: <span class="required text-red-500">*</span></label>
+                        <label class="block mb-3">Name: <span class="required text-red-500">*</span></label>
                         <input class="form-control border p-1 w-full" name="author_name" type="text">
                     </div>
                     <div class="w-full ml-1">
-                        <label>Email Adress: <span class="required text-red-500">*</span></label>
+                        <label class="block mb-3">Email Adress: <span class="required text-red-500">*</span></label>
                         <input class="form-control border p-1 w-full" name="author_email" type="email">
                     </div>
                 </div>
             @endif
-            <label>Comment: </label>
+            <label class="block mb-3">Comment: </label>
             <div class="row">
                 <div class="comment-box">
                     <textarea class="form-control border w-full" rows="7" name="comment_text" ></textarea>
