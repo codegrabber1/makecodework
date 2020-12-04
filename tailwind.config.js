@@ -20,8 +20,8 @@ module.exports = {
 
         },
         fontFamily: {
-            'head-font': ['Roboto Condensed', 'sans-serif'],
-            'main-font': ['Lato', 'sans-serif']
+            'head': ['"Exo 2"', 'sans-serif'],
+            'main': ['Lato', 'sans-serif']
         },
 
 

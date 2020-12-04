@@ -12,15 +12,17 @@
          </div>
 
          <div class="w-full search border border-b_color m-4 mx-auto shadow-sm">
-             <input class="w-full p-2 rounded outline-none" type="text" name="search" value="search">
+             <form action="{{ route('search') }}" method="get">
+                 <input class="w-full p-2 rounded outline-none" type="text" name="s" placeholder="search" required>
+             </form>
          </div>
 
     <nav class="w-full ">
         <div class="navBlock shadow-sm">
             <div class="titleBlock bg-background_sidebar w-full overflow-hidden">
-                <h2 class="navBlockHeader shadow-r_s bg-white float-left p-2 font-bold">Category</h2>
+                <h2 class="navBlockHeader shadow-r_s bg-white float-left py-2 px-3 font-bold">Category</h2>
             </div>
-            <ul class="topNavList ">
+            <ul class=" ">
                 <li class=""><a href="{{ route("index") }}">Home</a></li>
                 @foreach($tutorialCategories as $item)
                     <li class="">
@@ -36,7 +38,7 @@
         </div>
         <div class="navBlock shadow-sm">
             <div class="titleBlock bg-background_sidebar w-full overflow-hidden">
-                <h2 class="navBlockHeader shadow-r_s bg-white float-left p-2 font-bold">Latest news</h2>
+                <h2 class="navBlockHeader shadow-r_s bg-white float-left py-2 px-3 font-bold">Latest news</h2>
             </div>
 
             <ul class="topNavList ">

@@ -108,8 +108,6 @@ class PostController extends BaseController
 		    $year = Carbon::now()->year;
 		    //Upload File
 		    $path = env('THEME')."/images/blog/articles/{$year}/";
-//		    $request->file('upload')->move(public_path($path), $filenametostore);
-//			$request->file('upload')->storeAs(env('THEME').'/images/blog/articles', $filenametostore);
 
 		    if(file_exists($path . $filenametostore)) {
 			    $filenametostore = Carbon::now()->timestamp . $filenametostore;

@@ -4,7 +4,7 @@
     <div class="block-header">
         <div class="row">
             <div class="col-lg-7 col-md-6 col-sm-12">
-                <h2>Dashboard</h2>
+                <h2 >Dashboard</h2>
                 <ul class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{ route('home') }}"><i class="zmdi zmdi-home"></i> {{ config('app.name', 'Makecodework') }}</a></li>
                     <li class="breadcrumb-item active">Dashboard</li>
@@ -45,17 +45,25 @@
     </div>
     <div class="container-fluid">
         <h2>Tutorial Category</h2>
-        <ul>
+        <div class="row clearfix">
             @foreach($tutorialsCategory as $item)
-                <li><a href="">{{ $item->th_cat_name }}</a></li>
+                
+                <div class="col-lg-3 col-md-6 col-sm-12">
+                    <a href="">{{ $item->th_cat_name }}</a>
+                    <img src="{{ asset(env('THEME')).'/images/themes/'. $item->th_cat_img }}" alt="">
+                    
+                </div>
             @endforeach
-        </ul>
+        </div>
 
         <h2>Blog Category</h2>
-        <ul>
+        <div class="row clearfix">
             @foreach($blogCategory as $item)
-                <li><a href="">{{ $item->bc_name }}</a></li>
+                <div class="col-lg-4 col-md-6 col-sm-12">
+                    <a href="">{{ $item->bc_name }}</a>
+                    {{--<img src="{{ asset(env('THEME')).'/images/themes/'. $item->th_cat_img }}" alt="">--}}
+                </div>
             @endforeach
-        </ul>
+        </div>
     </div>
 @endsection

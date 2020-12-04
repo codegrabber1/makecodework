@@ -6,7 +6,7 @@
     <section class="bg-white shadow-sm px-4 mr-6">
    
     <div class="py-3 divide-y divide-y-reverse divide-gray-400">
-        <h1 class="text-2xl ">{{ $getPost->p_title }}</h1>
+        <h1 class="text-2xl font-head">{{ $getPost->p_title }}</h1>
 
         <div class="meta flex pb-4 ">
             <ol class="flex divide-x divide-gray-400">
@@ -34,7 +34,7 @@
     <section class="mr-6">
     <div id="comments" class="border-t-4 mt-3 shadow">
         <div class="wrap_result"></div>
-        <h3 class="title slim">
+        <h3 class="title slim font-head">
             @if(count($getPost->comments) == 0)
                 <div class="p-2 bg-white mb-2"><p>No comments</p></div>
             @else

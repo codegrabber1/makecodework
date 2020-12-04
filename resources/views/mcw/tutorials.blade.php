@@ -21,7 +21,7 @@
             @foreach($tutorialCategories as $post)
                 <div class="bg-white navBlock shadow">
                     <img class="w-full max-h-64 h-64" src="{{ asset(env('THEME')).'/images/themes/'.$post->th_cat_img }}" alt="">
-                    <h3 class="mx-4 text-2xl">
+                    <h3 class="mx-4 text-2xl font-head">
                         <strong>Category:</strong> &nbsp;<a href="{{ route('tutorials.category', $post->id) }}">{{ $post->th_cat_name }}</a>
                     </h3>
                     <div class="meta text-sm text-gray-500 text-sm mx-1 my-2">

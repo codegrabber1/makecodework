@@ -33,6 +33,8 @@ class CreateBlogPostsTable extends Migration
 
             $table->foreign('blog_category_id')->references('id')->on('theme_categories');
             $table->foreign('user_id')->references('id')->on('users');
+
+            $table->index( 'bc_title' );
         });
     }
 

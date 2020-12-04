@@ -18,6 +18,7 @@ Route::get('tutorial/category/{id}', 'ThemeCategoryController')->name('tutorials
 Route::get('tutorial/post/{id}', 'ThemePostController')->name('tutorials.category.post');
 Route::resource('/tutorial/comment','ThemeCommentController')->only('store')->names('tutorial.comment');
 
+Route::get('/search', 'SearchController@index')->name('search');
 $blogGroup = ['namespace'=>'Blog'];
 
 Route::group($blogGroup, function(){

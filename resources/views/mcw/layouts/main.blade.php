@@ -8,12 +8,13 @@
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Exo+2&display=swap" rel="stylesheet">
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css">
     <link rel="stylesheet" href="{{asset(env('THEME')).'/css/main.css'}}">
 
 </head>
-<body class="bg-background_sidebar font-main-font text-sm">
+<body class="bg-background_sidebar font-main text-sm">
 <div class="wrapper container mx-auto">
      <div>adver</div>
     <div class="flex px-2 mb-4 ">

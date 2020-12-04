@@ -10,7 +10,7 @@
                 <img class="sm:w-full md:w-2/5 lg:w-2/5" src="{{ asset(env('THEME')).'/images/themes/'.$post->p_image }}" alt="{{ $post->p_title }}">
                 <div class="m-3 flex-1">
 
-                    <h1 class="uppercase "><a href="{{ route('tutorials.category.post', $post->id) }}">{{ $post->p_title }}</a></h1>
+                    <h1 class="uppercase font-head"><a href="{{ route('tutorials.category.post', $post->id) }}">{{ $post->p_title }}</a></h1>
 
                     <p class="leading-5 my-3">{!! $post->p_excerpt !!}</p>
                     <div class=" p-2 flex justify-between my-3  ">

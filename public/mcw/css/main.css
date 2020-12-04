@@ -631,16 +631,11 @@ body{
   background-color: #fff;
   background-color: rgba(255, 255, 255, var(--bg-opacity));
   margin-bottom: 0.75rem;
-  border-right-width: 1px;
-  border-left-width: 1px;
-  border-bottom-width: 1px;
-  --border-opacity: 1;
-  border-color: #eaeaea;
-  border-color: rgba(234, 234, 234, var(--border-opacity));
 }
 
 .navBlock ul li {
   border-bottom-width: 1px;
+  padding: 0.25rem;
 }
 
 .navBlock ul li:last-child {
@@ -651,10 +646,7 @@ body{
   margin-top: 0.25rem;
   margin-bottom: 0.25rem;
   display: block;
-  margin-left: 1rem;
-  margin-right: 1rem;
-  margin-top: 0.5rem;
-  margin-bottom: 0.5rem;
+  margin-left: 0.5rem;
 }
 
 nav{
@@ -10496,11 +10488,11 @@ nav ul.pagination li.page-item.active span.page-link{
   clear: none;
 }
 
-.font-head-font {
-  font-family: Roboto Condensed, sans-serif;
+.font-head {
+  font-family: "Exo 2", sans-serif;
 }
 
-.font-main-font {
+.font-main {
   font-family: Lato, sans-serif;
 }
 
@@ -33635,11 +33627,11 @@ nav ul.pagination li.page-item.active span.page-link{
     clear: none;
   }
 
-  .sm\:font-head-font {
-    font-family: Roboto Condensed, sans-serif;
+  .sm\:font-head {
+    font-family: "Exo 2", sans-serif;
   }
 
-  .sm\:font-main-font {
+  .sm\:font-main {
     font-family: Lato, sans-serif;
   }
 
@@ -56709,11 +56701,11 @@ nav ul.pagination li.page-item.active span.page-link{
     clear: none;
   }
 
-  .md\:font-head-font {
-    font-family: Roboto Condensed, sans-serif;
+  .md\:font-head {
+    font-family: "Exo 2", sans-serif;
   }
 
-  .md\:font-main-font {
+  .md\:font-main {
     font-family: Lato, sans-serif;
   }
 
@@ -79783,11 +79775,11 @@ nav ul.pagination li.page-item.active span.page-link{
     clear: none;
   }
 
-  .lg\:font-head-font {
-    font-family: Roboto Condensed, sans-serif;
+  .lg\:font-head {
+    font-family: "Exo 2", sans-serif;
   }
 
-  .lg\:font-main-font {
+  .lg\:font-main {
     font-family: Lato, sans-serif;
   }
 
@@ -102857,11 +102849,11 @@ nav ul.pagination li.page-item.active span.page-link{
     clear: none;
   }
 
-  .xl\:font-head-font {
-    font-family: Roboto Condensed, sans-serif;
+  .xl\:font-head {
+    font-family: "Exo 2", sans-serif;
   }
 
-  .xl\:font-main-font {
+  .xl\:font-main {
     font-family: Lato, sans-serif;
   }
 

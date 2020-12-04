@@ -3,9 +3,10 @@
     {{--@include(env('THEME').'.sidebar')--}}
 {{--@endsection--}}
 @section('content')
-    <section class="" >
-        <h2 class="p-3 bg-white mb-6 uppercase shadow font-bold">
-            Search all tutorials </h2>
+    <section class="shadow" >
+        <h2 class="p-3 bg-white mb-6 uppercase font-bold">
+            Search all tutorials
+        </h2>
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 row-gap-6 gap-6 ">
         @foreach($themes as $theme)
             <div class="shadow bg-white grid grid-cols-1 row-gap-1 gap-1">
@@ -33,10 +34,10 @@
                 <a href="{{ route('blog') }}">All news</a></span></h2>
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 row-gap-3 gap-6">
             @foreach($lastPosts as $item)
-                <div class="bg-white shadow">
+                <div class="bg-white shadow-xl border pb-3 ">
                     <a href="{{ route('blog.category.post', $item->id) }}">
                         <img src="{{ asset(env('THEME')).'/images/blog/'.$item->bc_image }}" alt="{{ $item->bc_title }}">
-                        <p class="py-2 px-4 font-semibold">{!! $item->bc_title !!}</p>
+                        <p class="py-2 px-4 font-semibold text-2xl ">{!! $item->bc_title !!}</p>
                     </a>
                     <div class="px-4 mb-1">{!! $item->bc_excerpt !!}</div>
                 </div>

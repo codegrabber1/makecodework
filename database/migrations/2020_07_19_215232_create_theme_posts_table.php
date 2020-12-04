@@ -32,6 +32,8 @@ class CreateThemePostsTable extends Migration
 
             $table->foreign('theme_category_id')->references('id')->on('theme_categories');
             $table->foreign('user_id')->references('id')->on('users');
+
+            $table->index('p_title');
         });
     }
 

@@ -6,6 +6,7 @@
     <section class="bg-white shadow-sm px-4 mr-6">
             
         <div class="py-3 divide-y divide-y-reverse divide-gray-400">
+            
             <h1 class="text-3xl">{{ $blogPost->bc_title }}</h1>
 
             <div class="meta flex pb-4 ">
