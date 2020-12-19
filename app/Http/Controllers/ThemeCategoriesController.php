@@ -30,7 +30,7 @@ class ThemeCategoriesController extends Controller
 
 		$blogCategories = $this->blogCategoryRepository->getForFrontEnd();
 		$settings = $this->settingRepository->getSettings();
-		$tutorialCategories = $this->tutorialCategoryRepository->getAllItemsForFrontend(1,$id);
+		$tutorialCategories = $this->tutorialCategoryRepository->getAllItemsForFrontend(6,$id);
 		$lastPosts = $this->postsRepository->getLastPosts(3);
 		
 

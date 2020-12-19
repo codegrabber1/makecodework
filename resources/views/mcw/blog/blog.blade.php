@@ -5,14 +5,17 @@
 @section('content')
     <div class="grid grid-cols-2 row-gap-1 gap-1 mr-6">
         @foreach($lastPosts as $post)
-            <div class="border-2 mr-2 p-3 bg-white">
-               <h2 class="font-head"><a href="{{ route('blog.category.post', $post->id) }}">{!! $post->bc_title !!} </a></h2>
+            <div class="border-2 mr-2 bg-white">
+               <h2 class="font-head p-3 text-2xl"><a href="{{ route('blog.category.post', $post->id) }}">{!! $post->bc_title !!} </a></h2>
                 <img src="{{ asset(env('THEME')).'/images/blog/'.$post->bc_image }}" alt="{{ $post->bc_title }}">
-                <div class="bg-blue-200 p-3 flex flex-row">
+                <div class="bg-blue-200 p-3 flex flex-row justify-between">
                     <p>{!! $post->category->bc_name !!}</p>
-                    <p>{{ \Carbon\Carbon::parse($post->created_at)->locale('uk')->isoFormat('d MMMM Y')}}</p>
+                    <p>{{ \Carbon\Carbon::parse($post->created_at)->locale('uk')->isoFormat('D MMM Y')}}</p>
                 </div>
-               <p>{!! $post->bc_excerpt !!}</p>
+                <div class="p-3">
+                    {!! $post->bc_excerpt !!}
+                </div>
+
             </div>
         @endforeach
     </div>

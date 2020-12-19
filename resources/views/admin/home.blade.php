@@ -44,7 +44,7 @@
         </div>
     </div>
     <div class="container-fluid">
-        <h2>Tutorial Category</h2>
+        <h2 class="font-head">Tutorial Category</h2>
         <div class="row clearfix">
             @foreach($tutorialsCategory as $item)
                 
@@ -56,7 +56,7 @@
             @endforeach
         </div>
 
-        <h2>Blog Category</h2>
+        <h2 class="font-head">Blog Category</h2>
         <div class="row clearfix">
             @foreach($blogCategory as $item)
                 <div class="col-lg-4 col-md-6 col-sm-12">

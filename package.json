@@ -20,12 +20,15 @@
         "resolve-url-loader": "^2.3.1",
         "sass": "^1.20.1",
         "sass-loader": "^8.0.0",
+        "tailwindcss-pseudo-elements": "^1.5.1",
         "vue": "^2.5.17",
         "vue-template-compiler": "^2.6.10"
     },
     "dependencies": {
         "@ckeditor/ckeditor5-image": "^21.0.0",
+        "aspect-ratio": "^2.1.1",
         "postcss-cli": "^7.1.1",
-        "tailwindcss": "^1.7.6"
+        "tailwindcss": "^1.9.6",
+        "tailwindcss-aspect-ratio": "^3.0.0"
     }
 }

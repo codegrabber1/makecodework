@@ -1,3 +1,5 @@
+const plugin = require('tailwindcss/plugin');
+
 module.exports = {
   "mode":"development",
     future: {
@@ -14,6 +16,7 @@ module.exports = {
                 background_sidebar:'#f4f4f4',
                 background_blockColor: '#f9f9f9',
                 background_footer:'#f9fafc',
+                background_main_block:'#1a1e25',
                 b_color: '#eaeaea'
             },
             backgroundColor: theme => theme('colors'),
@@ -28,5 +31,26 @@ module.exports = {
 
   },
   variants: {},
-  plugins: [],
+  plugins: [
+      require('tailwindcss-pseudo-elements'),
+      // require('tailwindcss-aspect-ratio')({
+      //     ratios: {
+      //         '16/9': [16, 9],
+      //         '4/3': [4, 3],
+      //         '3/2': [3, 2],
+      //         '1/1': [1, 1],
+      //     },
+      //     variants: ['before', 'hover_before', 'responsive'],
+      // }),
+      plugin(function ({ addUtilities }) {
+          addUtilities(
+              {
+                  '.empty-content': {
+                      content: "''",
+                  },
+              },
+              ['before']
+          )
+      }),
+  ],
 };

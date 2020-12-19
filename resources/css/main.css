@@ -5,19 +5,19 @@
 body{
     /*font-family: 'Roboto', sans-serif;*/
 }
-.navBlock {
-    @apply bg-white mb-3;
-}
+/*.navBlock {*/
+    /*@apply bg-white mb-3;*/
+/*}*/
 
-.navBlock ul li {
-    @apply border-b p-1;
-}
-.navBlock ul li:last-child {
-    @apply border-none
-}
-.navBlock ul li a {
-    @apply my-1 block ml-2;
-}
+/*.navBlock ul li {*/
+    /*@apply border-b p-1;*/
+/*}*/
+/*.navBlock ul li:last-child {*/
+    /*@apply border-none*/
+/*}*/
+/*.navBlock ul li a {*/
+    /*@apply my-1 block ml-2;*/
+/*}*/
 nav{
     /*border: 1px solid red;*/
     width: 100%;

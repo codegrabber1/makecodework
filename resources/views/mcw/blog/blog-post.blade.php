@@ -7,7 +7,7 @@
             
         <div class="py-3 divide-y divide-y-reverse divide-gray-400">
             
-            <h1 class="text-3xl">{{ $blogPost->bc_title }}</h1>
+            <h1 class="text-3xl font-head">{{ $blogPost->bc_title }}</h1>
 
             <div class="meta flex pb-4 ">
                 <ol class="flex divide-x divide-gray-400">
