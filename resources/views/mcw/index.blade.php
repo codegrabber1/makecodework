@@ -15,15 +15,15 @@
     </div>
 @endsection
 @section('content')
-    <section class="shadow" >
-        <h2 class="p-3 bg-white mb-6 uppercase font-head font-semibold">
+    <section class="shadow my-6 " >
+        <h2 class="p-3 bg-white mb-6 uppercase font-head font-semibold shadow-sm">
             Search all tutorials
         </h2>
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 row-gap-6 gap-6 ">
         @foreach($themes as $theme)
             <div class="shadow bg-white grid grid-cols-1 row-gap-1 gap-1">
                 <a class="" href="{{ route('tutorials', $theme->id) }}" title="{{ $theme->theme_name }}">
-                    <img class="object-contain h-32 w-full outline-none" src="{{ asset(env('THEME')).'/images/themes/'. $theme->theme_image }}" alt="{{ $theme->theme_name }}">
+                    <img class="object-contain w-full outline-none" src="{{ asset(env('THEME')).'/images/themes/'. $theme->theme_image }}" alt="{{ $theme->theme_name }}">
                 </a>
                 <div class="grid grid-cols-2 text-gray-500 py-2">
                     <div class="name font-semibold w-full capitalize px-2 ">
@@ -40,7 +40,31 @@
         @endforeach
         </div>  
     </section>
-     <section class="my-6 ">
+    <section class="py-5 border-2 border-blue-500 bg-gray-100">
+       <div class="flex mx-3">
+           
+           <div>
+               <a href="">Hire me</a>
+               
+           </div>
+
+       </div>
+
+    </section>
+    <section class="my-6 py-2">
+        <div class="g-menu p-4 uppercase bg-white mb-6 uppercase shadow font-head font-semibold">Our work</div>
+        <div class="gridMosaics p-0">
+            <div class="pb-1"><img src="https://placeimg.com/640/480/nature/sepia" alt=""></div>
+            <div class="pb-1"><img src="https://placeimg.com/640/480/any" alt=""></div>
+            <div class="pb-1"><img src="https://placeimg.com/640/480/tech" alt=""></div>
+            <div class="pb-1"><img src="https://placeimg.com/640/630/any" alt=""></div>
+            <div class="pb-1"><img src="https://placeimg.com/640/480/animals" alt=""></div>
+            <div class="pb-1"><img src="https://placeimg.com/640/500/tech" alt=""></div>
+            <div class="pb-1"><img src="https://placeimg.com/640/630/animals" alt=""></div>
+            <div class="pb-1"><img src="https://placeimg.com/640/480/nature/sepia" alt=""></div>
+        </div>
+    </section>
+     <section class="my-6">
         <h2 class="p-3 bg-white mb-6 uppercase shadow font-head font-semibold">
             Latest news from blog <span class="float-right capitalize text-green-400 font-head">
                 <a href="{{ route('blog') }}">All news</a></span></h2>

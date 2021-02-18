@@ -54,9 +54,11 @@
             {{--</ul>--}}
         {{--</div>--}}
     </nav>
-         <div class="w-full search border border-b_color m-4 mx-auto shadow-sm">
-             <form action="{{ route('search') }}" method="get">
-                 <input class="w-full p-2 rounded outline-none" type="text" name="s" placeholder="search" required>
+         <div class="w-full search m-4 mx-auto shadow-sm">
+             <form action="{{ route('search') }}" method="get" class="ui form">
+                 <div class="ui left fluid icon input">
+                    <input class="w-full p-2 rounded outline-none" type="text" name="s" placeholder="search" required>   <i class="search icon"></i>
+                 </div>
              </form>
          </div>
          <div class="hire_block border-solid border-green-500 border rounded bg-green-600 text-white uppercase font-bold text-center p-3">

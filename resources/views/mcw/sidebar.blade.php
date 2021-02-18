@@ -11,8 +11,10 @@
         {{--</ul>--}}
     {{--</div>--}}
 
-    <div class="w-full search border border-b_color m-4 mx-auto">
-        <input class="w-full p-1 rounded outline-none" type="text" name="search" value="search">
+    <div class="w-full search m-4 mx-auto">
+        <div class="ui input">
+            <input class="w-full p-1 rounded outline-none" type="text" name="search" value="search">
+        </div>
     </div>
 
     <nav class="w-full ">

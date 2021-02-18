@@ -1,11 +1,20 @@
 @extends(env("THEME").'.layouts.main')
+<div class="p-3 bg-white mb-6 uppercase shadow font-head font-semibold">
+    <ul class="flex mx-10">
+        <li class="mr-6"><a href="{{ route("index") }}">Find more tutorials: </a></li>
+        @foreach($tutorialCategories as $item)
+            <li class="mr-6"><a href="{{ route('tutorials.category', $item->id) }}">{{ $item->th_cat_name  }}</a></li>
+        @endforeach
+
+    </ul>
+</div>
 @section('sidebar')
     @include(env('THEME').'.inner-sidebar')
 @endsection
 @section('content')
-    <section class="bg-white shadow-sm px-4 mr-6">
-        <h3 class="text-3xl font-head">You can leave a message to hire me</h3>
-        <div class="my-2 text-base leading-6">
+    <section class="bg-white shadow-sm px-4 mr-6 block overflow-hidden">
+        <div class="my-6 text-base leading-7 pb-3 px-3">
+            <h3 class="text-3xl font-head mb-4">You can leave a message to hire me</h3>
             <div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias, amet assumenda, blanditiis consequatur
                 culpa doloremque esse, est fuga illo laborum magnam magni maxime nostrum nulla porro quae quaerat quo
                 sapiente.
@@ -36,25 +45,25 @@
             <div class="w-full">
                 @include('admin.includes.message')
             </div>
-            <form action="{{ route('hireme.store') }}" method="post" id="messageform">
+            <form action="{{ route('hireme.store') }}" method="post" id="messageform" class="ui form">
                 @csrf
-                <div class="flex justify-between my-3">
-                    <div class="w-full mr-1">
+                <div class="flex justify-between my-3 two fields">
+                    <div class="w-full mr-1 field">
                         <label class="block mb-3">Name: <span class="required text-red-500">*</span></label>
                         <input class="form-control border p-1 w-full" name="username" type="text">
                     </div>
-                    <div class="w-full ml-1">
+                    <div class="w-full ml-1 field">
                         <label class="block mb-3">Email Adress: <span class="required text-red-500">*</span></label>
                         <input class="form-control border p-1 w-full" name="useremail" type="email">
                     </div>
                 </div>
-                <div class="flex justify-between my-3">
-                    <div class="w-full ml-1">
+                <div class="flex justify-between my-3 two fields">
+                    <div class="w-full ml-1 field">
                         <label class="block mb-3">Your phone: <span class="required text-red-500">*</span></label>
                         <input class="form-control border p-1 w-full" type="text" name="userephone" placeholder="Your phone">
                     </div>
 
-                    <div class="w-full ml-1">
+                    <div class="w-full ml-1 field">
                         <label class="block mb-3">Type of web-sites: <span class="required text-red-500">*</span></label>
                         <div class="ui selection dropdown w-full">
                             <input type="hidden" name="webtype">

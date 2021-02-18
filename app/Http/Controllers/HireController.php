@@ -65,7 +65,7 @@ class HireController extends Controller
         
 	    return $item ? redirect()
 		    ->route('hireme.index', [$item->id])
-		    ->with(['success' => 'Item has ben created successfully']) : back()
+		    ->with(['success' => 'Item has been created successfully']) : back()
 		    ->withErrors(['msg' => 'Not stored'])
 		    ->withInput();
     }
@@ -78,7 +78,7 @@ class HireController extends Controller
      */
     public function show($id)
     {
-        //
+        
     }
 
     /**

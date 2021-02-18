@@ -32,7 +32,6 @@ class ThemeCategoriesController extends Controller
 		$settings = $this->settingRepository->getSettings();
 		$tutorialCategories = $this->tutorialCategoryRepository->getAllItemsForFrontend(6,$id);
 		$lastPosts = $this->postsRepository->getLastPosts(3);
-		
 
 		return view(env('THEME').'/tutorials',
 			compact('blogCategories','tutorialCategories','lastPosts', 'settings'));

@@ -15,7 +15,8 @@ module.exports = {
             colors: {
                 background_sidebar:'#f4f4f4',
                 background_blockColor: '#f9f9f9',
-                background_footer:'#f9fafc',
+                background_footer:'#333',
+                //background_footer:'#f9fafc',
                 background_main_block:'#1a1e25',
                 b_color: '#eaeaea'
             },

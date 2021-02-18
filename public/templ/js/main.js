@@ -99,7 +99,7 @@
     });
 
  
-      /*================= Portfolio  =====================*/
+      /*================= PortfolioController  =====================*/
    //isotop filtering
     $('.container').imagesLoaded(function () {
         $('.filter-button-group').on('click', 'li', function () {

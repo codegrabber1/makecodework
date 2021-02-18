@@ -3,7 +3,7 @@
 1.2 Home Area 
 1.3 About Us Area
 1.4 Services Area
-1.5 Portfolio Area
+1.5 PortfolioController Area
 1.6 Happy Clients Area
 1.7 Happy Clients Area
 1.8 Contact Us Area
@@ -11,7 +11,9 @@
 
 2.1 Blog-Page Area 
 
-3.1 Blog-Details Page Area 
+3.1 Blog-Details Page Area
+3.2 Tutorial Page Area
+3.2.1 All tutorial Page Area
 
 */
 
@@ -313,7 +315,7 @@ a.theme-btn:hover:after {
 
 .home::after,
 .page::after {
-    background-image: url("../image/home/line-shape.png");
+    background-image: url("../images/home/line-shape.png");
     background-repeat: no-repeat;
     background-size: cover;
     content: "";
@@ -341,7 +343,7 @@ a.theme-btn:hover:after {
 }
 
 .profile::after {
-    background-image: url("../image/home/profile-bg.png");
+    background-image: url("../images/home/profile-bg.png");
     background-repeat: no-repeat;
     background-size: cover;
     content: "";
@@ -666,7 +668,7 @@ section.about-area {
 }
 
 /*================ 1.4 Work Experiences Area End ============*/
-/*================ 1.5 Portfolio Area End =============*/
+/*================ 1.5 PortfolioController Area End =============*/
 
 .portfolio-area ul.filter-button-group {
     text-align: center;
@@ -809,7 +811,7 @@ section.about-area {
 /*================ 1.7 Blog Area Start ============*/
 
 .bg {
-    background-image: url(../image/home/bg.jpg);
+    background-image: url(../images/home/bg.jpg);
     background-position: center;
 }
 
@@ -1521,3 +1523,10 @@ input:focus {
 }
 
 /*=============== 3.1 Blog-Details Page End =============== */
+/*================ 3.2 Tutorial Area Start ==============*/
+.tutorial-blog {
+    margin: 30px 0 15px;
+}
+/*================ 3.2 Tutorial Area End ==============*/
+/*================ 3.2.1 All tutorial Page Area Start ==============*/
+/*================ 3.2.1 All tutorial Page Area End ==============*/

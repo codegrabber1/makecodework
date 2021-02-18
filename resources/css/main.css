@@ -1,9 +1,26 @@
 @import "tailwindcss/base";
 
 @import "tailwindcss/components";
-
+html{
+    height: 100%;
+}
 body{
     /*font-family: 'Roboto', sans-serif;*/
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+header{
+    /* 0 flex-grow, 0 flex-shrink, auto flex-basis */
+    flex: 0 0 auto;
+}
+.wrapper{
+    /* 1 flex-grow, 0 flex-shrink, auto flex-basis */
+    flex: 1 0 auto;
+}
+footer{
+    /* 0 flex-grow, 0 flex-shrink, auto flex-basis */
+    flex: 0 0 auto;
 }
 /*.navBlock {*/
     /*@apply bg-white mb-3;*/
@@ -61,5 +78,15 @@ nav ul.pagination li.page-item.active span.page-link{
 .in_text {
     color: rgba(0,0,0,0.6);
     text-shadow: 2px 2px 3px rgba(255,255,255,0.1);
+}
+.gridMosaics {
+    padding: 0;
+    -moz-column-gap: 0.2em;
+    -webkit-column-gap: 0.2em;
+    column-gap: 0.2em;
+    -moz-column-count: 4;
+    -webkit-column-count: 4;
+    column-count: 4;
+    width: 100%;
 }
 @import "tailwindcss/utilities";

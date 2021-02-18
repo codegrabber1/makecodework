@@ -16,8 +16,9 @@ Route::get('/', 'IndexController@index')->name('index');
 Route::get('tutorial/categories/{id}', 'ThemeCategoriesController')->name('tutorials');
 Route::get('tutorial/category/{id}', 'ThemeCategoryController')->name('tutorials.category');
 Route::get('tutorial/post/{id}', 'ThemePostController')->name('tutorials.category.post');
-//Route::any('/hireme', 'HireController@index')->name('hire');
-Route::resource('/hire','HireController')->names('hireme');
+
+Route::resource('/hire','HireController')->names('hireme')->only('index', 'store');
+
 Route::resource('/tutorial/comment','ThemeCommentController')->only('store')->names('tutorial.comment');
 
 Route::get('/search', 'SearchController@index')->name('search');
@@ -84,5 +85,13 @@ Route::group($group, function(){
 	Route::resource('/settings', 'SettingController')
 	     ->only($methods)
 	     ->names('admin.settings');
+	
+	Route::resource('/order', 'HireController')
+		->only('index', 'show', 'destroy')
+		->names('admin.order');
+
+	Route::resource( '/portfolio', 'Portfolio\PortfolioController')
+		->only($methods)
+		->names('admin.portfolio');
 });
 

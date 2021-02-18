@@ -3,7 +3,7 @@
 1.2 Home Area 
 1.3 About Us Area
 1.4 Services Area
-1.5 Portfolio Area
+1.5 PortfolioController Area
 1.6 Happy Clients Area
 1.7 Happy Clients Area
 1.8 Contact Us Area
@@ -666,7 +666,7 @@ section.about-area {
 }
 
 /*================ 1.4 Work Experiences Area End ============*/
-/*================ 1.5 Portfolio Area End =============*/
+/*================ 1.5 PortfolioController Area End =============*/
 
 .portfolio-area ul.filter-button-group {
     text-align: center;

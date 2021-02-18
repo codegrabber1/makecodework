@@ -1,8 +1,18 @@
 @extends(env("THEME").'.layouts.main')
+<div class="p-3 bg-white mb-6 uppercase shadow font-head font-semibold">
+    <ul class="flex mx-10">
+        <li class="mr-6"><a href="{{ route("index") }}">Find more tutorials: </a></li>
+        @foreach($tutorialCategories as $item)
+            <li class="mr-6"><a href="{{ route('tutorials.category', $item->id) }}">{{ $item->th_cat_name  }}</a></li>
+        @endforeach
+        
+    </ul>
+</div>
 @section('sidebar')
     @include(env('THEME').'.inner-sidebar')
 @endsection
 @section('content')
+
     <div class="grid grid-cols-2 row-gap-1 gap-1 mr-6">
         @foreach($lastPosts as $post)
             <div class="border-2 mr-2 bg-white">

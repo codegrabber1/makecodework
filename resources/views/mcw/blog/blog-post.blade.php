@@ -4,7 +4,6 @@
 @endsection
 @section('content')
     <section class="bg-white shadow-sm px-4 mr-6">
-            
         <div class="py-3 divide-y divide-y-reverse divide-gray-400">
             
             <h1 class="text-3xl font-head">{{ $blogPost->bc_title }}</h1>
@@ -57,29 +56,34 @@
           </ul>
 
     </div>
-
     {{--Coment form--}}
     <div id="respond" class="overflow-hidden bg-white py-3 shadow">
-        <h3 class="title slim w-3/4 mx-auto my-3">Leave a Reaply
-            <small><a rel="nofollow" id="cancel-comment-reply-link" href="#respond" style="display:none;">Cancel reply</a></small></h3>
-        <form action="{{ route('comment.store') }}" method="post" id="commentform" class="comments-form w-5/6 mx-auto ">
+        <h3 class="title slim w-5/6 mx-auto my-6 font-head">Leave a Reaply
+            <small><a rel="nofollow" id="cancel-comment-reply-link" class="font-head ml-2 float-right title slim text-red-600  text-sm" href="#respond" style="display:none;">Cancel reply</a></small></h3>
+        <form action="{{ route('comment.store') }}" method="post" id="commentform" class="comments-form w-5/6 mx-auto ui form">
             @csrf
             @if(!Auth::check())
-                <div class="flex justify-between my-3">
-                    <div class="w-full mr-1">
+                <div class="flex justify-between my-3 two fields">
+                    <div class="w-full mr-1 field">
                         <label class="block mb-3">Name: <span class="required text-red-500">*</span></label>
-                        <input class="form-control border p-1 w-full" name="author_name" type="text">
+                        <div class="ui left icon input">
+                            <input name="author_name" type="text">
+                            <i class="user secret icon"></i>
+                        </div>
                     </div>
-                    <div class="w-full ml-1">
+                    <div class="w-full ml-1 field">
                         <label class="block mb-3">Email Adress: <span class="required text-red-500">*</span></label>
-                        <input class="form-control border p-1 w-full" name="author_email" type="email">
+                        <div class="ui left icon input">
+                            <input name="author_email" type="email">
+                            <i class="envelope icon"></i>
+                        </div>
                     </div>
                 </div>
             @endif
             <label class="block mb-3">Comment: <span class="required text-red-500">*</span></label>
             <div class="row">
-                <div class="comment-box">
-                    <textarea class="form-control border w-full" rows="7" name="comment_text" ></textarea>
+                <div class="comment-box field">
+                    <textarea rows="7" name="comment_text" ></textarea>
                     <i>Note: HTML is not translated!</i>
                 </div>
             </div>

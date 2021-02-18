@@ -8,7 +8,6 @@
                         <h2>Main Settings</h2>
                         <ul class="breadcrumb">
                             <li class="breadcrumb-item"><a href="{{ route('home') }}"><i class="zmdi zmdi-home"></i> {{ config('app.name', 'Makecodework') }}</a></li>
-                            
                             {{-- <li class="breadcrumb-item active">New Post</li> --}}
                         </ul>
                         <button class="btn btn-primary btn-icon mobile_menu" type="button"><i class="zmdi zmdi-sort-amount-desc"></i></button>
@@ -21,13 +20,12 @@
             </div>
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-lg-12">
+                    {{--<div class="col-lg-12">--}}
                         @include('admin.includes.message')
                         <div class="col-lg-5 col-md-12">
                             <div class="card mcard_3">
                                 <div class="body">
                                     @if($items->exists)
-                                        
                                         <form action="{{ route('admin.settings.update', $items->id) }}" method="post" enctype="multipart/form-data">
                                         @method("PUT")
                                         @csrf
@@ -70,7 +68,23 @@
                                 <div class="body">
                                     <div class="form-group">
                                         <label for="title"> Facebook</label>
-                                        <input type="text" id="slug" name="slug" class="form-control" value="">
+                                        <input type="text" id="slug" name="facebook" class="form-control" value="">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="title"> Twitter</label>
+                                        <input type="text" id="slug" name="twitter" class="form-control" value="">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="title"> Youtube</label>
+                                        <input type="text" id="slug" name="youtube" class="form-control" value="">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="title"> Telegram</label>
+                                        <input type="text" id="slug" name="telegram" class="form-control" value="">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="title"> Viber</label>
+                                        <input type="text" id="slug" name="viber" class="form-control" value="">
                                     </div>
                                     <span>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</span>
                                     <div class="form-group">
@@ -81,11 +95,13 @@
                                         @endif
                                     </div>
                                 </div>
-                                
                                 </form>
                             </div>
                         </div>
-                    </div>
+                        <div class="col-lg-5 col-md-12">
+                            smth
+                        </div>
+                    {{--</div>--}}
                 </div>
             </div>
         </div>

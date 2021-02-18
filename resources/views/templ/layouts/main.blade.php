@@ -22,12 +22,41 @@
 
 <body>
 <!-- ===============  preloader Area Start ====================-->
-{{--<div id="preloader">--}}
-    {{--<div class="loader">--}}
-        {{--<img src="assets/image/logo/loader.gif" alt="preloader">--}}
-    {{--</div>--}}
-{{--</div>--}}
+<div id="preloader">
+    <div class="loader">
+        <img src="{{asset(env('THEME')).'/images/logo/loader.gif'}}" alt="preloader">
+    </div>
+</div>
 <!-- ===============  preloader Area End ====================-->
+<!-- =============== 1.1 Menu Area Start====================-->
+<header class="header-menu" id="header">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-3">
+                <div class="logo">
+                    <a href="{{ route('index') }}"><img src="{{asset(env('THEME')).'/image/logo/logo.png'}}" alt="logo"></a>
+                </div>
+            </div>
+            <div class="col-lg-9 d-none d-lg-block">
+                <div class="main-menu">
+                    <nav class="nav-menu">
+                        <ul id="navigation">
+                            <li class="active"><a href="#home">Home</a></li>
+                            <li><a href="#about">About Me</a></li>
+                            <li><a href="#work">Tutorials</a></li>
+                            <li><a href="#portfolio">portfolo</a></li>
+                            <li><a href="#blog">News</a></li>
+                            <li><a href="#contact">contact</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            <div class="col-12 d-block d-lg-none">
+                <div class="mobile_menu"></div>
+            </div>
+        </div>
+    </div>
+</header>
 @yield('content')
 <footer>
     <p><a target="_blank" href="#">{{ config('app.name', 'Makecodework') }}</a></p>
