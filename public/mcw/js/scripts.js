@@ -1,6 +1,13 @@
 jQuery(document).ready(function($){
     $('.ui.dropdown').dropdown();
 
+    $("#lightgallery").lightGallery({
+        thumbnail: true,
+        animateThumb: true,
+        showThumbByDefault: false,
+        selector: ".item",
+    });
+
     $('#messageform').on('submit', function(e){
         e.preventDefault();
 

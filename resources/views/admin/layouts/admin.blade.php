@@ -102,6 +102,7 @@
                 <ul class="ml-menu">
                     {{-- blog-post.html --}}
                     <li><a href="{{ route('admin.portfolio.index') }}">All items</a></li>
+                    <li><a href="{{ route('admin.portfolio.category.index') }}">Category</a></li>
 
                 </ul>
             </li>

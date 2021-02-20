@@ -93,5 +93,9 @@ Route::group($group, function(){
 	Route::resource( '/portfolio', 'Portfolio\PortfolioController')
 		->only($methods)
 		->names('admin.portfolio');
+
+	Route::resource( '/portfolio/category', 'Portfolio\PortfolioCategoryController')
+		->only($methods)
+		->names('admin.portfolio.category');
 });
 

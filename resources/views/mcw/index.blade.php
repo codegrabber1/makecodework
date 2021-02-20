@@ -53,15 +53,15 @@
     </section>
     <section class="my-6 py-2">
         <div class="g-menu p-4 uppercase bg-white mb-6 uppercase shadow font-head font-semibold">Our work</div>
-        <div class="gridMosaics p-0">
-            <div class="pb-1"><img src="https://placeimg.com/640/480/nature/sepia" alt=""></div>
-            <div class="pb-1"><img src="https://placeimg.com/640/480/any" alt=""></div>
-            <div class="pb-1"><img src="https://placeimg.com/640/480/tech" alt=""></div>
-            <div class="pb-1"><img src="https://placeimg.com/640/630/any" alt=""></div>
-            <div class="pb-1"><img src="https://placeimg.com/640/480/animals" alt=""></div>
-            <div class="pb-1"><img src="https://placeimg.com/640/500/tech" alt=""></div>
-            <div class="pb-1"><img src="https://placeimg.com/640/630/animals" alt=""></div>
-            <div class="pb-1"><img src="https://placeimg.com/640/480/nature/sepia" alt=""></div>
+        <div id="lightgallery" class="gridMosaics p-0">
+            @foreach( $portfolioImages as $image)
+            <div class="pb-1">
+                <a class="item" href="{{ asset(env('THEME').'/images/portfolio/'.$image->img)  }}">
+                    <img src="{{ asset(env('THEME').'/images/portfolio/'.$image->img)  }}" alt="{{$image->title }}">
+                </a>
+            </div>
+            @endforeach
+
         </div>
     </section>
      <section class="my-6">

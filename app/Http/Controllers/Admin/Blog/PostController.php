@@ -176,7 +176,7 @@ class PostController extends BaseController
 
 	    return $result ? redirect()
 		    ->route('admin.posts.index', $item->id)
-		    ->with(['success' => 'Updated successfully']) : back()
+		    ->with(['success' => 'Updated ' .$item->bc_title. ' successfully']) : back()
 		    ->withErrors(['msg' => 'Not updated'])
 		    ->withInput();
     }

@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers\Blog;
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\BaseController;
 use App\Repositories\CategoryRepository;
 use App\Repositories\PostRepository;
 use App\Repositories\SettingRepository;
 use App\Repositories\ThemePostRepository;
 use App\Repositories\TutorialCategoryRepository;
 
-class BlogController extends Controller
+class BlogController extends BaseController
 {
 	private $tutorialCategoryRepository;
 	private $blogCategoryRepository;
