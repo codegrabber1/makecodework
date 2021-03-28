@@ -2,15 +2,14 @@
 
 namespace App\Http\Controllers\Blog;
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\BaseController;
 use App\Repositories\CategoryRepository;
 use App\Repositories\PostRepository;
 use App\Repositories\SettingRepository;
 use App\Repositories\ThemePostRepository;
 use App\Repositories\TutorialCategoryRepository;
-use Illuminate\Http\Request;
 
-class BlogPostController extends Controller
+class BlogPostController extends BaseController
 {
 	private $tutorialCategoryRepository;
 	private $blogCategoryRepository;
@@ -21,6 +20,7 @@ class BlogPostController extends Controller
 
 	public function __construct(){
 
+		parent::__construct();
 		$this->tutorialCategoryRepository = app(TutorialCategoryRepository::class);
 		$this->blogCategoryRepository = app(CategoryRepository::class);
 		$this->settingRepository = app(SettingRepository::class);

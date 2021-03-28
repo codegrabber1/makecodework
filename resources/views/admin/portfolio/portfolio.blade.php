@@ -69,13 +69,14 @@
                                         @endforeach
                                     </div>
                                 </div>
-                                @foreach($items as $item)
-
-                                    <div class="tab-pane " id="{{ $item->p_category->pc_name  }}">
-                                         <div class="row clearfix">
-                                            <div class="col-lg-3 col-md-4 col-sm-12">
+                                @foreach($pc_cats as $cat)
+                                    <div class="tab-pane " id="{{ $cat->pc_name  }}">
+                                        <div class="row clearfix">
+                                            @foreach($items as $item)
+                                                @if($cat->id === $item->portfolio_category_id)
+                                                <div class="col-lg-3 col-md-4 col-sm-12">
                                                 <div class="card">
-                                                    <a href="javascript:void(0);" class="file">
+                                                    <a href="{{ route( 'admin.portfolio.edit', $item->id ) }}" class="file">
                                                         <div class="hover">
                                                             <button type="button" class="btn btn-icon btn-icon-mini btn-round btn-danger">
                                                                 <i class="zmdi zmdi-delete"></i>
@@ -94,8 +95,9 @@
                                                     </a>
                                                 </div>
                                             </div>
-
-                                        </div>
+                                                @endif
+                                            @endforeach
+                                         </div>
                                     </div>
                                 @endforeach
                             </div>

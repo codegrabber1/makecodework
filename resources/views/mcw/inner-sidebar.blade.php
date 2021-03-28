@@ -1,11 +1,6 @@
 <aside class="w-5/12">
      <div class="sticky top-0">
-         <div class="logo my-5 p-10">
-             <a href="{{ route("index") }}">
-                 <img src="{{ asset(env('THEME')).'/images/'. $settings->logo }}" alt="">
-             </a>
-         </div>
-
+         @include(env('THEME').'.includes.logo')
 
         {{--<nav class="w-full ">--}}
         {{--<div class="navBlock shadow-sm">--}}
@@ -53,30 +48,14 @@
                 {{--@endforeach--}}
             {{--</ul>--}}
         {{--</div>--}}
-    </nav>
-         <div class="w-full search m-4 mx-auto shadow-sm">
-             <form action="{{ route('search') }}" method="get" class="ui form">
-                 <div class="ui left fluid icon input">
-                    <input class="w-full p-2 rounded outline-none" type="text" name="s" placeholder="search" required>   <i class="search icon"></i>
-                 </div>
-             </form>
-         </div>
-         <div class="hire_block border-solid border-green-500 border rounded bg-green-600 text-white uppercase font-bold text-center p-3">
-             <a href=" {{ route('hireme.index') }}" class="">
-                 You can hire me and I will thank you
-             </a>
+    {{--</nav>--}}
+     @include(env('THEME').'.includes.search')
+     <div class="hire_block border-solid border-green-500 border rounded bg-green-600 text-white  font-bold text-center p-3">
+         <a href=" {{ route('hireme.index') }}" class="">
+             {{ trans('ua.You can hire me and I will thank you') }}
+         </a>
 
-         </div>
-         <div class="flex p-4 border border-b_color bg-white w-full mx-auto m-4 shadow-sm">
-             <ul class="flex justify-between w-full">
-                 <li class="w-1/4"><a class="block text-center  px-2 py-1" href="#"><i class="fab fa-facebook-f"></i></a></li>
-                 <li class="w-1/4 ml-1"><a class="block text-center  px-2 py-1" href="#"><i class="fab fa-twitter"></i></a></li>
-                 <li class="w-1/4 ml-1"><a class="block text-center  px-2 py-1" href="#"><i class="fab fa-pinterest-p"></i></a></li>
-                 <li class="w-1/4 ml-1"><a class="block text-center  px-2 py-1" href="#"><i class="fab fa-youtube"></i></a></li>
-                 <li class="w-1/4 ml-1"><a class="block text-center  px-2 py-1" href="#"><i class="fab fa-telegram-plane"></i></a></li>
-                 <li class="w-1/4 ml-1"><a class="block text-center  px-2 py-1" href="#"><i class="fab fa-viber"></i></a></li>
-
-             </ul>
-         </div>
+     </div>
+         @include(env('THEME').'.includes.social')
      </div>
 </aside>

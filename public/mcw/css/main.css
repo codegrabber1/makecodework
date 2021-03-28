@@ -729,6 +729,16 @@ nav ul.pagination li.page-item.active span.page-link{
   width: 100%;
 }
 
+.main-carousel .owl-item img {
+  max-height: 550px;
+  height: 100%;
+}
+
+.linkHover{
+  position: absolute;
+  top: 5px;
+}
+
 .space-y-0 > :not(template) ~ :not(template) {
   --space-y-reverse: 0;
   margin-top: calc(0px * calc(1 - var(--space-y-reverse)));

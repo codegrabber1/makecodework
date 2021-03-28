@@ -1,7 +1,2 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: beon
- * Date: 20.02.2021
- * Time: 17:34
- */
+@extends(env('THEME').'.layouts.main')
+@section('content') @stop

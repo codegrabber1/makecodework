@@ -1,13 +1,12 @@
 @extends(env('THEME').'.layouts.main')
+@include(env('THEME') .'.includes.breadcrumbs')
 @section('sidebar')
     @include(env('THEME').'.inner-sidebar')
 @endsection
 @section('content')
     <section class="bg-white shadow-sm px-4 mr-6">
-   
     <div class="py-3 divide-y divide-y-reverse divide-gray-400">
         <h1 class="text-2xl font-head">{{ $getPost->p_title }}</h1>
-
         <div class="meta flex pb-4 ">
             <ol class="flex divide-x divide-gray-400">
 
@@ -25,9 +24,7 @@
                 </li>
             </ol>
         </div>
-
     </div>
-
     <img class="mx-auto" src="{{ asset(env('THEME')).'/images/themes/'.$getPost->p_image }}" alt="{{ $getPost->p_title }}">
     <div class="leading-8 my-4 px-5 text-base">{!! $getPost->p_text !!}</div>
     </section>
@@ -52,14 +49,11 @@
                 @include(env('THEME').'.comment', ['comments'=> $comments])
             @endforeach
         </ul>
-
     </div>
-
-
-    <div id="respond" class="overflow-hidden bg-white py-3 shadow">
-        <h3 class="title slim w-5/6 mx-auto my-6">Leave a Reaply
+    <div id="respond" class="overflow-hidden bg-white py-3 px-4 shadow">
+        <h3 class="title slim mx-auto my-2">Leave a Reaply
             <small><a rel="nofollow" id="cancel-comment-reply-link" href="#respond" style="display:none;">Cancel reply</a></small></h3>
-        <form action="{{ route('tutorial.comment.store') }}" method="post" id="commentform" class="comments-form w-5/6 mx-auto ui form">
+        <form action="{{ route('tutorial.comment.store') }}" method="post" id="commentform" class="comments-form mx-auto ui form">
             @csrf
             @if(!Auth::check())
                 <div class="flex justify-between my-3 two fields">

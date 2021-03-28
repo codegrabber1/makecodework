@@ -1,13 +1,5 @@
 @extends(env("THEME").'.layouts.main')
-<div class="p-3 bg-white mb-6 uppercase shadow font-head font-semibold">
-    <ul class="flex mx-10">
-        <li class="mr-6"><a href="{{ route("index") }}">Find more tutorials: </a></li>
-        @foreach($tutorialCategories as $item)
-            <li class="mr-6"><a href="{{ route('tutorials.category', $item->id) }}">{{ $item->th_cat_name  }}</a></li>
-        @endforeach
-
-    </ul>
-</div>
+@include(env('THEME') .'.includes.breadcrumbs')
 @section('sidebar')
     @include(env('THEME').'.inner-sidebar')
 @endsection
@@ -28,17 +20,7 @@
                 asperiores doloremque enim et expedita, mollitia ratione velit voluptate!
             </div>
         </div>
-        <div class="flex p-4 border border-b_color bg-white w-full mx-auto m-4 shadow-sm">
-            <ul class="flex justify-between w-full">
-                <li class="w-1/4"><a class="block text-center  px-2 py-1" href="#"><i class="fab fa-facebook-f"></i></a></li>
-                <li class="w-1/4 ml-1"><a class="block text-center  px-2 py-1" href="#"><i class="fab fa-twitter"></i></a></li>
-                <li class="w-1/4 ml-1"><a class="block text-center  px-2 py-1" href="#"><i class="fab fa-pinterest-p"></i></a></li>
-                <li class="w-1/4 ml-1"><a class="block text-center  px-2 py-1" href="#"><i class="fab fa-youtube"></i></a></li>
-                <li class="w-1/4 ml-1"><a class="block text-center  px-2 py-1" href="#"><i class="fab fa-telegram-plane"></i></a></li>
-                <li class="w-1/4 ml-1"><a class="block text-center  px-2 py-1" href="#"><i class="fab fa-viber"></i></a></li>
-
-            </ul>
-        </div>
+        @include(env('THEME') .'.includes.social')
         
         <div id="respond" class="overflow-hidden  py-3 ">
             <div id="mess_result"></div>

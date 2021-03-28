@@ -17,7 +17,7 @@
 @section('content')
     <section class="shadow my-6 " >
         <h2 class="p-3 bg-white mb-6 uppercase font-head font-semibold shadow-sm">
-            Search all tutorials
+            {{ trans('ua.Search all tutorials') }}
         </h2>
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 row-gap-6 gap-6 ">
         @foreach($themes as $theme)
@@ -44,30 +44,31 @@
        <div class="flex mx-3">
            
            <div>
-               <a href="">Hire me</a>
-               
+               <a href="">{{ trans('ua.Hire me') }}</a>
            </div>
-
        </div>
-
     </section>
     <section class="my-6 py-2">
-        <div class="g-menu p-4 uppercase bg-white mb-6 uppercase shadow font-head font-semibold">Our work</div>
-        <div id="lightgallery" class="gridMosaics p-0">
+        <div class="g-menu p-4 uppercase bg-white mb-6 uppercase shadow font-head font-semibold">{{ trans('ua.Our work')
+        }}</div>
+        <div class="owl-carousel main-carousel relative">
             @foreach( $portfolioImages as $image)
-            <div class="pb-1">
-                <a class="item" href="{{ asset(env('THEME').'/images/portfolio/'.$image->img)  }}">
-                    <img src="{{ asset(env('THEME').'/images/portfolio/'.$image->img)  }}" alt="{{$image->title }}">
-                </a>
-            </div>
+                <div class="pb-1 ">
+                    <img src="{{ asset(env('THEME').'/images/portfolio/'.$image->img)  }}" alt="{{$image->title }}" >
+                    <div class="overlay hidden absolute inset-0 border-2 border-fuchsia-600 bg-black
+                    bg-opacity-50 justify-content-center">
+                        <a class="text-white text-xl uppercase" href="{{ route('portfolio.item',
+                    $image->id) }}">
+                            {{ trans('ua.detail') }}</a>
+                    </div>
+                </div>
             @endforeach
-
         </div>
     </section>
      <section class="my-6">
         <h2 class="p-3 bg-white mb-6 uppercase shadow font-head font-semibold">
-            Latest news from blog <span class="float-right capitalize text-green-400 font-head">
-                <a href="{{ route('blog') }}">All news</a></span></h2>
+            {{ trans('ua.Latest news from blog') }} <span class="float-right capitalize text-green-400 font-head">
+                <a href="{{ route('blog') }}">{{ trans('ua.All news') }}</a></span></h2>
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 row-gap-3 gap-6">
             @foreach($lastPosts as $item)
                 <div class="bg-white shadow-xl border pb-3 ">

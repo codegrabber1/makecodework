@@ -89,4 +89,15 @@ nav ul.pagination li.page-item.active span.page-link{
     column-count: 4;
     width: 100%;
 }
+.main-carousel .owl-item img {
+    max-height: 550px;
+    height: 100%;
+}
+
+.linkHover{
+    position: absolute;
+    top: 5px;
+
+}
+
 @import "tailwindcss/utilities";

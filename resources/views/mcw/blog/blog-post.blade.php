@@ -57,10 +57,10 @@
 
     </div>
     {{--Coment form--}}
-    <div id="respond" class="overflow-hidden bg-white py-3 shadow">
-        <h3 class="title slim w-5/6 mx-auto my-6 font-head">Leave a Reaply
+    <div id="respond" class="overflow-hidden bg-white py-3 px-4 shadow">
+        <h3 class="title slim mx-auto my-6 font-head">Leave a Reaply
             <small><a rel="nofollow" id="cancel-comment-reply-link" class="font-head ml-2 float-right title slim text-red-600  text-sm" href="#respond" style="display:none;">Cancel reply</a></small></h3>
-        <form action="{{ route('comment.store') }}" method="post" id="commentform" class="comments-form w-5/6 mx-auto ui form">
+        <form action="{{ route('comment.store') }}" method="post" id="commentform" class="comments-form mx-auto ui form">
             @csrf
             @if(!Auth::check())
                 <div class="flex justify-between my-3 two fields">

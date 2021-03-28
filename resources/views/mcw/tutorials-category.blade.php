@@ -1,5 +1,5 @@
 @extends(env('THEME').'.layouts.main')
-
+@include(env('THEME') .'.includes.breadcrumbs')
 @section('sidebar')
     @include(env('THEME').'.inner-sidebar')
 @endsection

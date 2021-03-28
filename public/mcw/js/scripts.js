@@ -8,6 +8,22 @@ jQuery(document).ready(function($){
         selector: ".item",
     });
 
+    $(".owl-carousel").owlCarousel({
+        items: 4,
+        loop: true,
+        margin: 10,
+        center: true,
+        nav: true,
+    });
+
+    $('.pb-1').hover(function(){
+        $(this).css("cursor", "pointer");
+        $(this).find(".overlay").css({"display": "flex", "align-items": "center", "justify-content": "center"});
+    }, function(){
+        $(this).find(".overlay").css("display", "none");
+
+    });
+
     $('#messageform').on('submit', function(e){
         e.preventDefault();
 

@@ -1,15 +1,9 @@
 @extends(env('THEME').'.layouts.main')
+@include(env('THEME') .'.includes.breadcrumbs')
 {{--@section('sidebar')--}}
     {{--@include(env('THEME').'.inner-sidebar')--}}
 {{--@endsection--}}
 @section('content')
-
-    <ul class="flex">
-        <li class="mr-6"><a href="{{ route("index") }}">Home</a></li>
-        @foreach($tutorialCategories as $item)
-            <li class="mr-6"><a href="{{ route('tutorials.category', $item->id) }}">{{ $item->th_cat_name  }}</a></li>
-        @endforeach
-    </ul>
 
     <div class="bg-white p-5 my-3 text-center shadow">
         The description of the category
@@ -40,7 +34,6 @@
             </div>
         @endif
     </div>
-        
     @else
         <p>There is no article yet!</p>
     @endif

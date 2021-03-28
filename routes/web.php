@@ -30,6 +30,11 @@ Route::group($blogGroup, function(){
  Route::get('/blog/post/{id}', 'BlogPostController')->name('blog.category.post');
  Route::resource('/comment','BlogCommentController', ['only'=>['store']]);
 });
+$portfolioGroup = ['namespace' => 'Portfolio'];
+
+Route::group($portfolioGroup, function(){
+	Route::get('/portfolio/{id}', 'PortfolioController')->name( 'portfolio.item');
+});
 
 Auth::routes();
 
